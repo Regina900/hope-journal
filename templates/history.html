@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Journal | Hope Journal</title>
+
+
+    <style>
+
+        /* =====================================
+           RESET
+        ===================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================
+           BODY
+        ===================================== */
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: #44394f;
+
+            background:
+
+                radial-gradient(
+                    circle at top left,
+                    rgba(255, 255, 255, 0.95),
+                    transparent 35%
+                ),
+
+                radial-gradient(
+                    circle at bottom right,
+                    rgba(224, 242, 254, 0.65),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f5f0ff,
+                    #fff8f1,
+                    #eef8f3
+                );
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================
+           NAVIGATION
+        ===================================== */
+
+        nav {
+
+            width: 100%;
+
+            padding:
+                18px 6%;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            background:
+                rgba(255, 255, 255, 0.78);
+
+            backdrop-filter:
+                blur(14px);
+
+            -webkit-backdrop-filter:
+                blur(14px);
+
+            border-bottom:
+                1px solid
+                rgba(100, 80, 120, 0.12);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+
+            color: #68518c;
+
+            text-decoration: none;
+
+            font-size: 1.45rem;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+
+            justify-content: flex-end;
+        }
+
+
+        .nav-links a {
+
+            color: #655a70;
+
+            text-decoration: none;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.88rem;
+
+            transition:
+                color 0.2s ease;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #76559d;
+        }
+
+
+        .logout {
+
+            color: #9a6372 !important;
+        }
+
+
+        /* =====================================
+           MAIN CONTAINER
+        ===================================== */
+
+        main {
+
+            width: 90%;
+
+            max-width: 1100px;
+
+            margin:
+                55px auto 80px;
+
+            animation:
+                pageFade 0.5s ease;
+        }
+
+
+        @keyframes pageFade {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(10px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        /* =====================================
+           PAGE HEADER
+        ===================================== */
+
+        .page-header {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .eyebrow {
+
+            display: inline-block;
+
+            padding:
+                7px 15px;
+
+            margin-bottom: 15px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(255, 255, 255, 0.65);
+
+            color: #9079a9;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.78rem;
+
+            font-weight: 600;
+
+            letter-spacing: 1.8px;
+
+            text-transform: uppercase;
+        }
+
+
+        .page-header h1 {
+
+            color: #514167;
+
+            font-size:
+                clamp(2.3rem, 5vw, 3.8rem);
+
+            line-height: 1.15;
+
+            margin-bottom: 15px;
+        }
+
+
+        .page-header p {
+
+            max-width: 680px;
+
+            margin:
+                0 auto;
+
+            color: #756b7e;
+
+            font-size: 1.05rem;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================
+           STATISTICS
+        ===================================== */
+
+        .stats-section {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 20px;
+
+            max-width: 750px;
+
+            margin:
+                0 auto 30px;
+        }
+
+
+        .stat-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                25px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 255, 255, 0.82);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(70, 50, 90, 0.07);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .stat-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 90px;
+
+            height: 90px;
+
+            right: -35px;
+
+            top: -35px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(242, 235, 248, 0.7);
+        }
+
+
+        .stat-card:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 16px 40px
+                rgba(70, 50, 90, 0.1);
+        }
+
+
+        .stat-card h3 {
+
+            position: relative;
+
+            z-index: 1;
+
+            color: #73579a;
+
+            font-size: 2rem;
+
+            line-height: 1.2;
+
+            margin-bottom: 7px;
+        }
+
+
+        .stat-card p {
+
+            position: relative;
+
+            z-index: 1;
+
+            color: #756b7e;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.82rem;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+        }
+
+
+        /* =====================================
+           SEARCH AREA
+        ===================================== */
+
+        .search-area {
+
+            max-width: 850px;
+
+            margin:
+                0 auto 35px;
+        }
+
+
+        .search-label {
+
+            display: block;
+
+            margin-bottom: 9px;
+
+            color: #604b72;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.85rem;
+
+            font-weight: 600;
+        }
+
+
+        .search-wrapper {
+
+            position: relative;
+        }
+
+
+        .search-icon {
+
+            position: absolute;
+
+            left: 17px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 1.05rem;
+
+            pointer-events: none;
+        }
+
+
+        #searchInput {
+
+            width: 100%;
+
+            padding:
+                15px 18px 15px 48px;
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.16);
+
+            border-radius: 17px;
+
+            background:
+                rgba(255, 255, 255, 0.86);
+
+            color: #44394f;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.95rem;
+
+            outline: none;
+
+            box-shadow:
+                0 8px 25px
+                rgba(70, 50, 90, 0.05);
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        #searchInput:focus {
+
+            border-color:
+                #9a75bd;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(154, 117, 189, 0.12);
+        }
+
+
+        .search-result-count {
+
+            margin-top: 8px;
+
+            color: #91879a;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.78rem;
+
+            text-align: right;
+        }
+
+
+        /* =====================================
+           JOURNAL GRID
+        ===================================== */
+
+        .journal-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 25px;
+        }
+
+
+        /* =====================================
+           JOURNAL CARD
+        ===================================== */
+
+        .journal-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                rgba(255, 255, 255, 0.87);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-radius: 24px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.08);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                opacity 0.2s ease;
+        }
+
+
+        .journal-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+
+            height: 120px;
+
+            right: -60px;
+
+            bottom: -60px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(242, 235, 248, 0.5);
+
+            pointer-events: none;
+        }
+
+
+        .journal-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 20px 55px
+                rgba(70, 50, 90, 0.13);
+        }
+
+
+        .journal-card.hidden {
+
+            display: none;
+        }
+
+
+        /* =====================================
+           CARD TOP
+        ===================================== */
+
+        .card-top {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                flex-start;
+
+            gap: 12px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .date {
+
+            color: #8b8192;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.82rem;
+
+            line-height: 1.5;
+        }
+
+
+        .mood {
+
+            flex-shrink: 0;
+
+            padding:
+                7px 12px;
+
+            border-radius: 20px;
+
+            background:
+                #f1eafa;
+
+            color: #70558f;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.78rem;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================
+           ENTRY TITLE
+        ===================================== */
+
+        .journal-card h2 {
+
+            color: #554367;
+
+            font-size: 1.35rem;
+
+            line-height: 1.4;
+
+            margin-bottom: 13px;
+        }
+
+
+        /* =====================================
+           ENTRY PREVIEW
+        ===================================== */
+
+        .preview {
+
+            color: #756b7e;
+
+            line-height: 1.75;
+
+            font-size: 0.96rem;
+
+            margin-bottom: 22px;
+
+            display: -webkit-box;
+
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================
+           AI RESPONSE BADGE
+        ===================================== */
+
+        .ai-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 22px;
+
+            padding:
+                7px 12px;
+
+            border-radius: 20px;
+
+            background:
+                #f4eee6;
+
+            color: #806b52;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.76rem;
+        }
+
+
+        /* =====================================
+           READ BUTTON
+        ===================================== */
+
+        .read-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding:
+                12px 20px;
+
+            border-radius: 30px;
+
+            background:
+                #73579a;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.88rem;
+
+            font-weight: 600;
+
+            box-shadow:
+                0 7px 18px
+                rgba(115, 87, 154, 0.18);
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .read-button:hover {
+
+            background:
+                #604681;
+
+            color: white;
+
+            text-decoration: none;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 10px 22px
+                rgba(115, 87, 154, 0.24);
+        }
+
+
+        /* =====================================
+           NO SEARCH RESULTS
+        ===================================== */
+
+        .no-results {
+
+            display: none;
+
+            max-width: 650px;
+
+            margin:
+                30px auto;
+
+            padding:
+                45px 30px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 255, 255, 0.82);
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(70, 50, 90, 0.07);
+        }
+
+
+        .no-results-icon {
+
+            font-size: 3rem;
+
+            margin-bottom: 15px;
+        }
+
+
+        .no-results h2 {
+
+            color: #554367;
+
+            margin-bottom: 10px;
+        }
+
+
+        .no-results p {
+
+            color: #756b7e;
+
+            font-size: 0.95rem;
+        }
+
+
+        /* =====================================
+           EMPTY STATE
+        ===================================== */
+
+        .empty-state {
+
+            max-width: 650px;
+
+            margin:
+                30px auto;
+
+            padding:
+                55px 35px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 255, 255, 0.86);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.1);
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.08);
+        }
+
+
+        .empty-icon {
+
+            font-size: 4rem;
+
+            margin-bottom: 20px;
+        }
+
+
+        .empty-state h2 {
+
+            color: #554367;
+
+            margin-bottom: 15px;
+
+            font-size: 1.5rem;
+        }
+
+
+        .empty-state p {
+
+            color: #756b7e;
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================
+           NEW ENTRY BUTTON
+        ===================================== */
+
+        .new-entry {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                13px 22px;
+
+            border-radius: 30px;
+
+            background:
+                #73579a;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-weight: 600;
+
+            font-size: 0.9rem;
+
+            box-shadow:
+                0 8px 20px
+                rgba(115, 87, 154, 0.2);
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .new-entry:hover {
+
+            background:
+                #604681;
+
+            color: white;
+
+            text-decoration: none;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =====================================
+           BOTTOM ACTION
+        ===================================== */
+
+        .bottom-action {
+
+            text-align: center;
+
+            margin-top: 45px;
+        }
+
+
+        .bottom-action a {
+
+            color: #70558f;
+
+            text-decoration: none;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-weight: 600;
+
+            font-size: 0.9rem;
+        }
+
+
+        .bottom-action a:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+
+            text-align: center;
+
+            margin:
+                50px 0 30px;
+
+            padding:
+                0 20px;
+
+            color: #91879a;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.82rem;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================
+           MOBILE — TABLET
+        ===================================== */
+
+        @media (max-width: 750px) {
+
+            nav {
+
+                padding:
+                    16px 5%;
+
+                gap: 15px;
+            }
+
+
+            .nav-links {
+
+                gap: 12px;
+
+                flex-wrap: wrap;
+
+                justify-content: flex-end;
+            }
+
+
+            .nav-links a {
+
+                font-size: 0.78rem;
+            }
+
+
+            main {
+
+                width: 92%;
+
+                margin:
+                    40px auto 60px;
+            }
+
+
+            .journal-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .journal-card {
+
+                padding: 26px;
+            }
+
+
+            .stats-section {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+                gap: 12px;
+            }
+
+
+            .stat-card {
+
+                padding:
+                    20px 15px;
+            }
+
+
+            .page-header h1 {
+
+                font-size:
+                    2.5rem;
+            }
+
+        }
+
+
+        /* =====================================
+           MOBILE — SMALL PHONES
+        ===================================== */
+
+        @media (max-width: 520px) {
+
+            nav {
+
+                align-items:
+                    flex-start;
+            }
+
+
+            .logo {
+
+                font-size:
+                    1.2rem;
+            }
+
+
+            .nav-links {
+
+                gap: 7px;
+            }
+
+
+            .nav-links a {
+
+                font-size:
+                    0.7rem;
+            }
+
+
+            main {
+
+                width: 94%;
+
+                margin-top:
+                    30px;
+            }
+
+
+            .page-header {
+
+                margin-bottom:
+                    28px;
+            }
+
+
+            .page-header h1 {
+
+                font-size:
+                    2.2rem;
+            }
+
+
+            .page-header p {
+
+                font-size:
+                    0.92rem;
+            }
+
+
+            .stats-section {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .stat-card h3 {
+
+                font-size:
+                    1.7rem;
+            }
+
+
+            .journal-card {
+
+                padding:
+                    22px;
+            }
+
+
+            .card-top {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+            }
+
+
+            .mood {
+
+                align-self:
+                    flex-start;
+            }
+
+
+            .search-area {
+
+                margin-bottom:
+                    25px;
+            }
+
+
+            #searchInput {
+
+                font-size:
+                    0.9rem;
+
+                padding:
+                    14px 15px 14px 44px;
+            }
+
+
+            .empty-state {
+
+                padding:
+                    42px 22px;
+            }
+
+
+            .empty-icon {
+
+                font-size:
+                    3.3rem;
+            }
+
+        }
+
+
+        /* =====================================
+           VERY SMALL PHONES
+        ===================================== */
+
+        @media (max-width: 380px) {
+
+            .logo {
+
+                font-size:
+                    1.05rem;
+            }
+
+
+            .nav-links a {
+
+                font-size:
+                    0.65rem;
+            }
+
+
+            .page-header h1 {
+
+                font-size:
+                    2rem;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         NAVIGATION
+    ===================================== -->
+
+    <nav>
+
+        <a
+            href="{{ url_for('index') }}"
+            class="logo"
+        >
+            🌿 Hope Journal
+        </a>
+
+
+        <div class="nav-links">
+
+            <a
+                href="{{ url_for('index') }}"
+            >
+                Home
+            </a>
+
+
+            <a
+                href="{{ url_for('journal.create_journal') }}"
+            >
+                ✍️ Write
+            </a>
+
+
+            <a
+                href="{{ url_for('journal.journal_history') }}"
+            >
+                📖 My Journal
+            </a>
+
+
+            <a
+                href="{{ url_for('prayer.prayer_page') }}"
+            >
+                🙏 Prayers
+            </a>
+
+
+            <a
+                href="{{ url_for('scriptures.scriptures_page') }}"
+            >
+                📜 Scriptures
+            </a>
+
+
+            <a
+                href="{{ url_for('insights.insights_page') }}"
+            >
+                🌱 Insights
+            </a>
+
+
+            <a
+                href="{{ url_for('auth.logout') }}"
+                class="logout"
+            >
+                Log Out
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ===================================== -->
+
+    <main>
+
+
+        <!-- =====================================
+             PAGE HEADER
+        ===================================== -->
+
+        <section class="page-header">
+
+            <div class="eyebrow">
+                Your personal journey
+            </div>
+
+
+            <h1>
+                📔 My Journal
+            </h1>
+
+
+            <p>
+                A collection of your thoughts, feelings,
+                prayers, reflections, and moments of hope.
+                Look back and see how far you've come.
+            </p>
+
+        </section>
+
+
+
+        <!-- =====================================
+             JOURNAL STATISTICS
+        ===================================== -->
+
+        {% if entries %}
+
+            <section class="stats-section">
+
+                <div class="stat-card">
+
+                    <h3>
+                        {{ entries|length }}
+                    </h3>
+
+                    <p>
+                        Total Entries
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    {% set moods = entries
+                        |selectattr("mood")
+                        |map(attribute="mood")
+                        |list
+                    %}
+
+                    {% if moods %}
+
+                        <h3>
+                            {{ moods|first }}
+                        </h3>
+
+                        <p>
+                            Recent Mood
+                        </p>
+
+                    {% else %}
+
+                        <h3>
+                            —
+                        </h3>
+
+                        <p>
+                            Mood Not Recorded
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+            </section>
+
+        {% endif %}
+
+
+
+        <!-- =====================================
+             SEARCH
+        ===================================== -->
+
+        {% if entries %}
+
+            <div class="search-area">
+
+                <label
+                    for="searchInput"
+                    class="search-label"
+                >
+                    🔎 Find something in your journal
+                </label>
+
+
+                <div class="search-wrapper">
+
+                    <span class="search-icon">
+                        🔍
+                    </span>
+
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search by mood, date, or words from your entry..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div
+                    class="search-result-count"
+                    id="searchResultCount"
+                >
+                    Showing {{ entries|length }} entries
+                </div>
+
+            </div>
+
+        {% endif %}
+
+
+
+        <!-- =====================================
+             JOURNAL ENTRIES
+        ===================================== -->
+
+        {% if entries %}
+
+            <section
+                class="journal-grid"
+                id="journalGrid"
+            >
+
+
+                {% for entry in entries %}
+
+                    <article
+                        class="journal-card searchable-entry"
+                    >
+
+
+                        <!-- CARD HEADER -->
+
+                        <div class="card-top">
+
+
+                            <div class="date">
+
+                                📅
+
+                                {{ entry.created_at.strftime(
+                                    '%B %d, %Y'
+                                ) }}
+
+                            </div>
+
+
+                            {% if entry.mood %}
+
+                                <div class="mood">
+
+                                    {{ entry.mood }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+
+                        <!-- ENTRY TITLE -->
+
+                        <h2>
+
+                            {% if entry.mood %}
+
+                                {{ entry.mood }}
+                                Reflection
+
+                            {% else %}
+
+                                Journal Reflection
+
+                            {% endif %}
+
+                        </h2>
+
+
+
+                        <!-- ENTRY PREVIEW -->
+
+                        <p class="preview">
+
+                            {% if entry.content|length > 220 %}
+
+                                {{ entry.content[:220] }}...
+
+                            {% else %}
+
+                                {{ entry.content }}
+
+                            {% endif %}
+
+                        </p>
+
+
+
+                        <!-- AI RESPONSE BADGE -->
+
+                        {% if entry.response %}
+
+                            <div class="ai-badge">
+
+                                🌿 Hope response saved
+
+                            </div>
+
+                        {% else %}
+
+                            <div class="ai-badge">
+
+                                💜 Reflection saved
+
+                            </div>
+
+                        {% endif %}
+
+
+
+                        <!-- READ BUTTON -->
+
+                        <a
+                            href="{{ url_for(
+                                'journal.view_journal',
+                                entry_id=entry.id
+                            ) }}"
+                            class="read-button"
+                        >
+
+                            Read Entry →
+
+                        </a>
+
+
+                    </article>
+
+                {% endfor %}
+
+
+            </section>
+
+
+
+            <!-- =====================================
+                 NO SEARCH RESULTS
+            ===================================== -->
+
+            <section
+                class="no-results"
+                id="noResults"
+            >
+
+                <div class="no-results-icon">
+                    🔎
+                </div>
+
+
+                <h2>
+                    No entries found
+                </h2>
+
+
+                <p>
+                    Try searching for another word,
+                    mood, or date.
+                </p>
+
+            </section>
+
+
+        {% else %}
+
+
+            <!-- =====================================
+                 EMPTY JOURNAL
+            ===================================== -->
+
+            <section class="empty-state">
+
+
+                <div class="empty-icon">
+                    🌱
+                </div>
+
+
+                <h2>
+                    Your journal is waiting
+                </h2>
+
+
+                <p>
+                    You haven't written your first journal
+                    entry yet. Take a quiet moment, put your
+                    thoughts into words, and begin your journey
+                    toward hope.
+                </p>
+
+
+                <a
+                    href="{{ url_for('journal.create_journal') }}"
+                    class="new-entry"
+                >
+
+                    ✍️ Write My First Entry
+
+                </a>
+
+
+            </section>
+
+        {% endif %}
+
+
+
+        <!-- =====================================
+             BOTTOM ACTION
+        ===================================== -->
+
+        <div class="bottom-action">
+
+            <a
+                href="{{ url_for('journal.create_journal') }}"
+            >
+
+                ✍️ Write a New Journal Entry
+
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================
+         FOOTER
+    ===================================== -->
+
+    <footer>
+
+        💜 Hope Journal — A private space to
+        reflect, pray, and grow in hope.
+
+    </footer>
+
+
+
+    <!-- =====================================
+         SEARCH SCRIPT
+    ===================================== -->
+
+    <script>
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const searchResultCount =
+            document.getElementById(
+                "searchResultCount"
+            );
+
+        const noResults =
+            document.getElementById("noResults");
+
+        const entries =
+            document.querySelectorAll(
+                ".searchable-entry"
+            );
+
+
+        if (searchInput) {
+
+            searchInput.addEventListener(
+                "input",
+                function () {
+
+                    const searchTerm =
+                        this.value
+                            .toLowerCase()
+                            .trim();
+
+
+                    let visibleCount = 0;
+
+
+                    entries.forEach(
+                        function (entry) {
+
+                            const entryText =
+                                entry.innerText
+                                    .toLowerCase();
+
+
+                            if (
+                                entryText.includes(
+                                    searchTerm
+                                )
+                            ) {
+
+                                entry.classList.remove(
+                                    "hidden"
+                                );
+
+                                visibleCount++;
+
+                            } else {
+
+                                entry.classList.add(
+                                    "hidden"
+                                );
+
+                            }
+
+                        }
+                    );
+
+
+                    if (searchTerm) {
+
+                        searchResultCount.textContent =
+                            visibleCount +
+                            (
+                                visibleCount === 1
+                                    ? " entry found"
+                                    : " entries found"
+                            );
+
+                    } else {
+
+                        searchResultCount.textContent =
+                            "Showing " +
+                            entries.length +
+                            (
+                                entries.length === 1
+                                    ? " entry"
+                                    : " entries"
+                            );
+
+                    }
+
+
+                    if (
+                        noResults &&
+                        searchTerm &&
+                        visibleCount === 0
+                    ) {
+
+                        noResults.style.display =
+                            "block";
+
+                    } else if (noResults) {
+
+                        noResults.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
+

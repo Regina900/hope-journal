@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Scriptures | Hope Journal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <style>
+
+        /* =========================================
+           SCRIPTURES PAGE
+           HOPE JOURNAL VISUAL UPGRADE
+        ========================================== */
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 7px 15px;
+            margin-bottom: 17px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.65);
+            color: #9079a9;
+            font-family: Arial, sans-serif;
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .page-header h1 {
+            color: #514167;
+            font-size: clamp(2.3rem, 5vw, 3.8rem);
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .page-header p {
+            max-width: 680px;
+            margin: auto;
+            color: #756b7e;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+
+        /* =========================================
+           SCRIPTURE GRID
+        ========================================== */
+
+        .scripture-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================================
+           SCRIPTURE CARD
+        ========================================== */
+
+        .scripture-card {
+            position: relative;
+            overflow: hidden;
+
+            padding: 32px;
+
+            background:
+                rgba(255, 255, 255, 0.86);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.08);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .scripture-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 140px;
+            height: 140px;
+
+            right: -65px;
+            top: -65px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(235, 246, 238, 0.85);
+
+            pointer-events: none;
+        }
+
+        .scripture-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 22px 55px
+                rgba(70, 50, 90, 0.13);
+        }
+
+
+        /* =========================================
+           TOP AREA
+        ========================================== */
+
+        .scripture-top {
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .scripture-icon {
+            width: 62px;
+            height: 62px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 19px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf6ef,
+                    #f2ebf8
+                );
+
+            font-size: 2rem;
+
+            box-shadow:
+                0 8px 20px
+                rgba(70, 100, 75, 0.06);
+        }
+
+        .scripture-date {
+            color: #8b8192;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.82rem;
+        }
+
+
+        /* =========================================
+           MOOD
+        ========================================== */
+
+        .mood {
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 7px 12px;
+
+            margin-bottom: 18px;
+
+            border-radius: 20px;
+
+            background:
+                #f1eafa;
+
+            color:
+                #70558f;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.78rem;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================================
+           SCRIPTURE REFERENCE
+        ========================================== */
+
+        .scripture-reference {
+            display: inline-block;
+
+            margin-bottom: 18px;
+
+            color: #647d61;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 1.28rem;
+
+            font-weight: bold;
+
+            line-height: 1.4;
+        }
+
+
+        /* =========================================
+           SCRIPTURE TEXT
+        ========================================== */
+
+        .scripture-text {
+            position: relative;
+
+            padding:
+                24px 22px;
+
+            margin-bottom: 23px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(242, 248, 243, 0.9);
+
+            border-left:
+                4px solid
+                #87a878;
+
+            color: #5d665e;
+
+            font-size: 1rem;
+
+            line-height: 1.9;
+
+            font-style: italic;
+        }
+
+
+        /* =========================================
+           DIVIDER
+        ========================================== */
+
+        .scripture-divider {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin:
+                5px 0 22px;
+
+            color: #9baf98;
+
+            font-size: 0.85rem;
+        }
+
+        .scripture-divider::before,
+        .scripture-divider::after {
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    #d7e2d6
+                );
+        }
+
+        .scripture-divider::after {
+            background:
+                linear-gradient(
+                    to left,
+                    transparent,
+                    #d7e2d6
+                );
+        }
+
+
+        /* =========================================
+           BUTTON
+        ========================================== */
+
+        .scripture-card .button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                12px 19px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.86rem;
+
+            font-weight: 600;
+
+            transition:
+                0.2s ease;
+        }
+
+        .scripture-card .secondary {
+            background:
+                #eee7f5;
+
+            color:
+                #654d80;
+        }
+
+        .scripture-card .secondary:hover {
+            background:
+                #e2d8ed;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =========================================
+           EMPTY STATE
+        ========================================== */
+
+        .empty-state {
+            max-width: 680px;
+
+            margin:
+                30px auto;
+
+            padding:
+                60px 35px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 255, 255, 0.86);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-radius:
+                28px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.08);
+        }
+
+        .empty-icon {
+            width: 78px;
+            height: 78px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin:
+                0 auto 22px;
+
+            border-radius:
+                24px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf6ef,
+                    #f2ebf8
+                );
+
+            font-size: 2.6rem;
+        }
+
+        .empty-state h2 {
+            color:
+                #554367;
+
+            font-size:
+                1.5rem;
+
+            margin-bottom:
+                15px;
+        }
+
+        .empty-state p {
+            max-width:
+                560px;
+
+            margin:
+                0 auto 28px;
+
+            color:
+                #756b7e;
+
+            line-height:
+                1.8;
+        }
+
+
+        /* =========================================
+           PRIMARY BUTTON
+        ========================================== */
+
+        .empty-state .primary {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                13px 22px;
+
+            border-radius:
+                30px;
+
+            background:
+                #73579a;
+
+            color: white;
+
+            text-decoration:
+                none;
+
+            font-family:
+                Arial, sans-serif;
+
+            font-weight:
+                600;
+
+            font-size:
+                0.88rem;
+
+            box-shadow:
+                0 8px 20px
+                rgba(115, 87, 154, 0.22);
+
+            transition:
+                0.2s ease;
+        }
+
+        .empty-state .primary:hover {
+            background:
+                #604681;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =========================================
+           SCRIPTURE REMINDER
+        ========================================== */
+
+        .scripture-reminder {
+            max-width:
+                900px;
+
+            margin:
+                35px auto 0;
+
+            padding:
+                38px 30px;
+
+            text-align:
+                center;
+
+            border-radius:
+                26px;
+
+            background:
+                rgba(255, 250, 240, 0.9);
+
+            border:
+                1px solid
+                rgba(180, 150, 110, 0.15);
+
+            box-shadow:
+                0 12px 35px
+                rgba(100, 75, 45, 0.05);
+        }
+
+        .scripture-reminder-icon {
+            font-size:
+                2rem;
+
+            margin-bottom:
+                10px;
+        }
+
+        .scripture-reminder h2 {
+            color:
+                #745d46;
+
+            font-size:
+                1.4rem;
+
+            margin-bottom:
+                12px;
+        }
+
+        .scripture-reminder p {
+            max-width:
+                720px;
+
+            margin:
+                auto;
+
+            color:
+                #7b7065;
+
+            line-height:
+                1.8;
+
+            font-size:
+                0.96rem;
+        }
+
+
+        /* =========================================
+           BOTTOM ACTION
+        ========================================== */
+
+        .bottom-action {
+            text-align:
+                center;
+
+            margin:
+                35px 0 0;
+        }
+
+        .bottom-action a {
+            color:
+                #70558f;
+
+            text-decoration:
+                none;
+
+            font-family:
+                Arial, sans-serif;
+
+            font-weight:
+                600;
+
+            transition:
+                color 0.2s ease;
+        }
+
+        .bottom-action a:hover {
+            color:
+                #604681;
+
+            text-decoration:
+                underline;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 750px) {
+
+            .scripture-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .scripture-card {
+                padding:
+                    28px;
+            }
+
+            .page-header h1 {
+                font-size:
+                    2.4rem;
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            .page-header p {
+                font-size:
+                    0.92rem;
+            }
+
+            .scripture-top {
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+            }
+
+            .scripture-card {
+                padding:
+                    24px;
+            }
+
+            .scripture-reference {
+                font-size:
+                    1.15rem;
+            }
+
+            .scripture-text {
+                font-size:
+                    0.95rem;
+
+                padding:
+                    20px 17px;
+            }
+
+            .scripture-reminder {
+                padding:
+                    30px 22px;
+            }
+
+            .empty-state {
+                padding:
+                    45px 24px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVIGATION
+    ========================================== -->
+
+    <nav>
+
+        <a
+            href="{{ url_for('index') }}"
+            class="logo"
+        >
+            🌿 Hope Journal
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('index') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('journal.create_journal') }}">
+                ✍️ Write
+            </a>
+
+            <a href="{{ url_for('journal.journal_history') }}">
+                📖 My Journal
+            </a>
+
+            <a href="{{ url_for('prayer.prayer_page') }}">
+                🙏 Prayers
+            </a>
+
+            <a href="{{ url_for('scriptures.scriptures_page') }}">
+                📜 Scriptures
+            </a>
+
+            <a
+                href="{{ url_for('auth.logout') }}"
+                class="logout"
+            >
+                Log Out
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main>
+
+
+        <!-- HEADER -->
+
+        <section class="page-header">
+
+            <div class="eyebrow">
+                Words to carry with you
+            </div>
+
+            <h1>
+                📜 My Scriptures
+            </h1>
+
+            <p>
+                Keep the Scripture from your journal
+                reflections close. Return whenever
+                you need encouragement, peace, or hope.
+            </p>
+
+        </section>
+
+
+        <!-- =========================================
+             SCRIPTURE COLLECTION
+        ========================================== -->
+
+        {% if scriptures %}
+
+            <section class="scripture-grid">
+
+                {% for scripture in scriptures %}
+
+                    <article class="scripture-card">
+
+
+                        <div class="scripture-top">
+
+                            <div class="scripture-icon">
+                                📖
+                            </div>
+
+
+                            <div class="scripture-date">
+
+                                📅
+
+                                {{ scripture.created_at.strftime(
+                                    '%B %d, %Y'
+                                ) }}
+
+                            </div>
+
+                        </div>
+
+
+                        {% if scripture.mood %}
+
+                            <div class="mood">
+
+                                {{ scripture.mood }}
+
+                            </div>
+
+                        {% endif %}
+
+
+                        {% if scripture.reference %}
+
+                            <div class="scripture-reference">
+
+                                {{ scripture.reference }}
+
+                            </div>
+
+                        {% endif %}
+
+
+                        {% if scripture.text %}
+
+                            <p class="scripture-text">
+
+                                "{{ scripture.text }}"
+
+                            </p>
+
+                        {% endif %}
+
+
+                        <div class="scripture-divider">
+                            ✦
+                        </div>
+
+
+                        <a
+                            href="{{ url_for(
+                                'journal.view_journal',
+                                entry_id=scripture.entry_id
+                            ) }}"
+                            class="button secondary"
+                        >
+
+                            🌿 View Journal Reflection
+
+                        </a>
+
+
+                    </article>
+
+                {% endfor %}
+
+            </section>
+
+
+        {% else %}
+
+
+            <!-- =====================================
+                 EMPTY STATE
+            ====================================== -->
+
+            <section class="empty-state scripture-empty">
+
+                <div class="empty-icon">
+                    📖
+                </div>
+
+
+                <h2>
+                    Your Scripture collection is waiting
+                </h2>
+
+
+                <p>
+                    Scripture from your future journal
+                    reflections will be collected here,
+                    giving you a peaceful place to return
+                    to words of hope and encouragement.
+                </p>
+
+
+                <a
+                    href="{{ url_for('journal.create_journal') }}"
+                    class="button primary"
+                >
+
+                    ✍️ Write a Journal Entry
+
+                </a>
+
+            </section>
+
+        {% endif %}
+
+
+        <!-- =========================================
+             BOTTOM MESSAGE
+        ========================================== -->
+
+        <section class="scripture-reminder">
+
+            <div class="scripture-reminder-icon">
+                🌿
+            </div>
+
+
+            <h2>
+                Keep hope close
+            </h2>
+
+
+            <p>
+                Sometimes a single verse can become
+                something we return to again and again.
+                Let these words accompany you on your journey.
+            </p>
+
+        </section>
+
+
+        <div class="bottom-action">
+
+            <a
+                href="{{ url_for('journal.create_journal') }}"
+            >
+                ✍️ Write a New Journal Entry
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+        💜 Hope Journal — A private space to
+        reflect, pray, and grow in hope.
+
+    </footer>
+
+
+    <script
+        src="{{ url_for('static', filename='js/app.js') }}"
+    ></script>
+
+</body>
+
+</html>

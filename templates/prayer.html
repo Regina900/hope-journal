@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Prayers | Hope Journal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <style>
+
+        /* =========================================
+           EXISTING PRAYER PAGE STYLES
+        ========================================== */
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 7px 15px;
+            margin-bottom: 17px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.65);
+            color: #9079a9;
+            font-family: Arial, sans-serif;
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .page-header h1 {
+            color: #514167;
+            font-size: clamp(2.3rem, 5vw, 3.8rem);
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .page-header p {
+            max-width: 680px;
+            margin: auto;
+            color: #756b7e;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+
+        /* =========================================
+           NEW: PRAYER SUMMARY
+        ========================================== */
+
+        .prayer-summary {
+            max-width: 1100px;
+            margin: 0 auto 28px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 18px 22px;
+
+            background:
+                rgba(255, 255, 255, 0.72);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.10);
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(70, 50, 90, 0.05);
+        }
+
+        .summary-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .summary-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: #f2ebf8;
+
+            font-size: 1.35rem;
+        }
+
+        .summary-text strong {
+            display: block;
+
+            color: #554367;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.95rem;
+
+            margin-bottom: 3px;
+        }
+
+        .summary-text span {
+            color: #8b8192;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.8rem;
+        }
+
+        .prayer-count {
+            color: #73579a;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 1.1rem;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================
+           NEW: SEARCH + FILTER
+        ========================================== */
+
+        .prayer-tools {
+            max-width: 1100px;
+
+            margin:
+                0 auto 30px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 180px;
+
+            gap: 14px;
+        }
+
+        .search-box,
+        .mood-filter {
+            width: 100%;
+
+            padding:
+                14px 17px;
+
+            border:
+                1px solid
+                #ddd4e5;
+
+            border-radius:
+                16px;
+
+            background:
+                rgba(255, 255, 255, 0.82);
+
+            color:
+                #554367;
+
+            font-family:
+                Arial, sans-serif;
+
+            font-size:
+                0.9rem;
+
+            outline: none;
+
+            transition:
+                border 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .search-box:focus,
+        .mood-filter:focus {
+            border-color:
+                #a88fc1;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(155, 130, 183, 0.10);
+        }
+
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-icon {
+            position: absolute;
+
+            left: 16px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 1rem;
+
+            pointer-events: none;
+        }
+
+        .search-box {
+            padding-left: 44px;
+        }
+
+
+        /* =========================================
+           PRAYER LIST
+        ========================================== */
+
+        .prayer-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================================
+           PRAYER CARD
+        ========================================== */
+
+        .prayer-card {
+            position: relative;
+            overflow: hidden;
+
+            padding: 32px;
+
+            background:
+                rgba(255, 255, 255, 0.86);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.08);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                opacity 0.25s ease;
+        }
+
+        .prayer-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 135px;
+            height: 135px;
+
+            right: -60px;
+            top: -60px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(242, 235, 248, 0.75);
+
+            pointer-events: none;
+        }
+
+        .prayer-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 22px 55px
+                rgba(70, 50, 90, 0.13);
+        }
+
+
+        /* =========================================
+           PRAYER META
+        ========================================== */
+
+        .prayer-meta {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 24px;
+        }
+
+        .prayer-date {
+            color: #8b8192;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.82rem;
+        }
+
+        .mood {
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            background: #f1eafa;
+
+            color: #70558f;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.78rem;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================================
+           PRAYER ICON
+        ========================================== */
+
+        .prayer-icon {
+            width: 64px;
+            height: 64px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 20px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f2ebf8,
+                    #eee8f5
+                );
+
+            font-size: 2rem;
+
+            box-shadow:
+                0 8px 20px
+                rgba(90, 65, 115, 0.07);
+        }
+
+
+        /* =========================================
+           PRAYER TITLE
+        ========================================== */
+
+        .prayer-card h2 {
+            color: #554367;
+
+            font-size: 1.45rem;
+
+            line-height: 1.35;
+
+            margin-bottom: 17px;
+        }
+
+
+        /* =========================================
+           PRAYER TEXT
+        ========================================== */
+
+        .prayer-text {
+            position: relative;
+
+            color: #665c70;
+
+            font-size: 1rem;
+
+            line-height: 1.9;
+
+            margin-bottom: 26px;
+
+            padding:
+                22px 20px 22px 24px;
+
+            background:
+                rgba(248, 244, 250, 0.72);
+
+            border-left:
+                4px solid
+                #a77ac5;
+
+            border-radius:
+                0 16px 16px 0;
+        }
+
+
+        /* =========================================
+           BUTTON
+        ========================================== */
+
+        .prayer-card .button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                12px 19px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.86rem;
+
+            font-weight: 600;
+
+            transition:
+                0.2s ease;
+        }
+
+        .prayer-card .secondary {
+            background: #eee7f5;
+
+            color: #654d80;
+        }
+
+        .prayer-card .secondary:hover {
+            background: #e2d8ed;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =========================================
+           NEW: NO SEARCH RESULTS
+        ========================================== */
+
+        .no-results {
+            display: none;
+
+            max-width: 650px;
+
+            margin: 30px auto;
+
+            padding:
+                45px 30px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 255, 255, 0.86);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-radius:
+                26px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.07);
+        }
+
+        .no-results-icon {
+            font-size: 2.5rem;
+
+            margin-bottom: 15px;
+        }
+
+        .no-results h2 {
+            color: #554367;
+
+            font-size: 1.35rem;
+
+            margin-bottom: 10px;
+        }
+
+        .no-results p {
+            color: #756b7e;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================
+           EMPTY STATE
+        ========================================== */
+
+        .empty-state {
+            max-width: 680px;
+
+            margin:
+                30px auto;
+
+            padding:
+                60px 35px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 255, 255, 0.86);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-radius:
+                28px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.08);
+        }
+
+        .empty-icon {
+            width: 78px;
+            height: 78px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin:
+                0 auto 22px;
+
+            border-radius: 24px;
+
+            background:
+                #f2ebf8;
+
+            font-size: 2.6rem;
+        }
+
+        .empty-state h2 {
+            color: #554367;
+
+            font-size: 1.5rem;
+
+            margin-bottom: 15px;
+        }
+
+        .empty-state p {
+            max-width: 560px;
+
+            margin:
+                0 auto 28px;
+
+            color: #756b7e;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================
+           PRIMARY BUTTON
+        ========================================== */
+
+        .empty-state .primary {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                13px 22px;
+
+            border-radius: 30px;
+
+            background:
+                #73579a;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-weight: 600;
+
+            font-size: 0.88rem;
+
+            box-shadow:
+                0 8px 20px
+                rgba(115, 87, 154, 0.22);
+
+            transition:
+                0.2s ease;
+        }
+
+        .empty-state .primary:hover {
+            background:
+                #604681;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =========================================
+           GENTLE REMINDER
+        ========================================== */
+
+        .gentle-reminder {
+            max-width: 900px;
+
+            margin:
+                35px auto 0;
+
+            padding:
+                38px 30px;
+
+            text-align: center;
+
+            border-radius:
+                26px;
+
+            background:
+                rgba(255, 250, 240, 0.9);
+
+            border:
+                1px solid
+                rgba(180, 150, 110, 0.15);
+
+            box-shadow:
+                0 12px 35px
+                rgba(100, 75, 45, 0.05);
+        }
+
+        .gentle-reminder > div {
+            font-size: 2rem;
+
+            margin-bottom: 10px;
+        }
+
+        .gentle-reminder h2 {
+            color: #745d46;
+
+            font-size: 1.4rem;
+
+            margin-bottom: 12px;
+        }
+
+        .gentle-reminder p {
+            max-width: 700px;
+
+            margin: auto;
+
+            color: #7b7065;
+
+            line-height: 1.8;
+
+            font-size: 0.96rem;
+        }
+
+
+        /* =========================================
+           BOTTOM ACTION
+        ========================================== */
+
+        .bottom-action {
+            text-align: center;
+
+            margin:
+                35px 0 0;
+        }
+
+        .bottom-action a {
+            color: #70558f;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-weight: 600;
+
+            transition:
+                color 0.2s ease;
+        }
+
+        .bottom-action a:hover {
+            color: #604681;
+
+            text-decoration: underline;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 750px) {
+
+            .prayer-list {
+                grid-template-columns: 1fr;
+            }
+
+            .prayer-card {
+                padding: 28px;
+            }
+
+            .page-header h1 {
+                font-size: 2.4rem;
+            }
+
+            .prayer-tools {
+                grid-template-columns: 1fr;
+            }
+
+            .prayer-summary {
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            .page-header p {
+                font-size: 0.92rem;
+            }
+
+            .prayer-meta {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            .prayer-card {
+                padding: 24px;
+            }
+
+            .prayer-text {
+                font-size: 0.95rem;
+
+                padding:
+                    18px 16px 18px 20px;
+            }
+
+            .gentle-reminder {
+                padding:
+                    30px 22px;
+            }
+
+            .empty-state {
+                padding:
+                    45px 24px;
+            }
+
+            .prayer-summary {
+                padding: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVIGATION
+    ========================================== -->
+
+    <nav>
+
+        <a
+            href="{{ url_for('index') }}"
+            class="logo"
+        >
+            🌿 Hope Journal
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('index') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('journal.create_journal') }}">
+                ✍️ Write
+            </a>
+
+            <a href="{{ url_for('journal.journal_history') }}">
+                📖 My Journal
+            </a>
+
+            <a href="{{ url_for('prayer.prayer_page') }}">
+                🙏 Prayers
+            </a>
+
+            <a href="{{ url_for('scriptures.scriptures_page') }}">
+                📜 Scriptures
+            </a>
+
+            <a
+                href="{{ url_for('auth.logout') }}"
+                class="logout"
+            >
+                Log Out
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main>
+
+
+        <!-- HEADER -->
+
+        <section class="page-header">
+
+            <div class="eyebrow">
+                A quiet place to return to
+            </div>
+
+            <h1>
+                🙏 My Prayers
+            </h1>
+
+            <p>
+                Revisit the prayers created from your
+                journal reflections. Take a moment to
+                pause, breathe, and reflect.
+            </p>
+
+        </section>
+
+
+        <!-- =========================================
+             NEW: PRAYER SUMMARY
+        ========================================== -->
+
+        {% if prayers %}
+
+            <section class="prayer-summary">
+
+                <div class="summary-left">
+
+                    <div class="summary-icon">
+                        🙏
+                    </div>
+
+                    <div class="summary-text">
+
+                        <strong>
+                            Your Prayer Collection
+                        </strong>
+
+                        <span>
+                            A quiet place for your reflections
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="prayer-count">
+
+                    <span id="visiblePrayerCount">
+                        {{ prayers|length }}
+                    </span>
+
+                    prayer{% if prayers|length != 1 %}s{% endif %}
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================================
+                 NEW: SEARCH + FILTER
+            ========================================== -->
+
+            <section class="prayer-tools">
+
+                <div class="search-wrapper">
+
+                    <span class="search-icon">
+                        🔎
+                    </span>
+
+                    <input
+                        type="search"
+                        id="prayerSearch"
+                        class="search-box"
+                        placeholder="Search your prayers..."
+                        aria-label="Search your prayers"
+                    >
+
+                </div>
+
+
+                <select
+                    id="moodFilter"
+                    class="mood-filter"
+                    aria-label="Filter prayers by mood"
+                >
+
+                    <option value="all">
+                        All moods
+                    </option>
+
+                    {% set moods = [] %}
+
+                    {% for item in prayers %}
+
+                        {% if item.mood and item.mood not in moods %}
+
+                            {% set _ = moods.append(item.mood) %}
+
+                        {% endif %}
+
+                    {% endfor %}
+
+
+                    {% for mood in moods %}
+
+                        <option value="{{ mood|lower }}">
+                            {{ mood }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </section>
+
+
+            <!-- =========================================
+                 PRAYERS
+            ========================================== -->
+
+            <section
+                class="prayer-list"
+                id="prayerList"
+            >
+
+                {% for item in prayers %}
+
+                    <article
+                        class="prayer-card"
+                        data-mood="{{ item.mood|default('')|lower }}"
+                    >
+
+
+                        <div class="prayer-meta">
+
+                            <div class="prayer-date">
+
+                                📅
+
+                                {{ item.created_at.strftime(
+                                    '%B %d, %Y'
+                                ) }}
+
+                            </div>
+
+
+                            {% if item.mood %}
+
+                                <div class="mood">
+
+                                    {{ item.mood }}
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="prayer-icon">
+                            🙏
+                        </div>
+
+
+                        <h2>
+                            A Prayer for Your Journey
+                        </h2>
+
+
+                        <p class="prayer-text">
+
+                            {{ item.prayer }}
+
+                        </p>
+
+
+                        <a
+                            href="{{ url_for(
+                                'journal.view_journal',
+                                entry_id=item.entry_id
+                            ) }}"
+                            class="button secondary"
+                        >
+
+                            🌿 View Journal Reflection
+
+                        </a>
+
+
+                    </article>
+
+                {% endfor %}
+
+            </section>
+
+
+            <!-- =========================================
+                 NEW: NO SEARCH RESULTS
+            ========================================== -->
+
+            <section
+                class="no-results"
+                id="noResults"
+            >
+
+                <div class="no-results-icon">
+                    🌿
+                </div>
+
+                <h2>
+                    No prayers found
+                </h2>
+
+                <p>
+                    We couldn't find a prayer matching
+                    your search or selected mood.
+                    Try another word or choose a different mood.
+                </p>
+
+            </section>
+
+
+        {% else %}
+
+
+            <!-- =====================================
+                 EMPTY STATE
+            ====================================== -->
+
+            <section class="empty-state">
+
+                <div class="empty-icon">
+                    🙏
+                </div>
+
+
+                <h2>
+                    Your prayer space is waiting
+                </h2>
+
+
+                <p>
+                    When you write a journal reflection
+                    and receive a prayer, it will appear
+                    here for you to revisit whenever you
+                    need a quiet moment.
+                </p>
+
+
+                <a
+                    href="{{ url_for('journal.create_journal') }}"
+                    class="button primary"
+                >
+
+                    ✍️ Write a Journal Entry
+
+                </a>
+
+            </section>
+
+        {% endif %}
+
+
+        <!-- =========================================
+             BOTTOM MESSAGE
+        ========================================== -->
+
+        <section class="gentle-reminder">
+
+            <div>
+                🌿
+            </div>
+
+            <h2>
+                A gentle reminder
+            </h2>
+
+            <p>
+                You can always return here, take a
+                quiet moment, and reflect on the words
+                that brought you comfort before.
+            </p>
+
+        </section>
+
+
+        <div class="bottom-action">
+
+            <a
+                href="{{ url_for('journal.create_journal') }}"
+            >
+                ✍️ Write a New Journal Entry
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+        💜 Hope Journal — A private space to
+        reflect, pray, and grow in hope.
+
+    </footer>
+
+
+    <script
+        src="{{ url_for('static', filename='js/app.js') }}"
+    ></script>
+
+
+    <!-- =========================================
+         NEW: PRAYER SEARCH SCRIPT
+    ========================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const searchInput =
+                    document.getElementById(
+                        "prayerSearch"
+                    );
+
+                const moodFilter =
+                    document.getElementById(
+                        "moodFilter"
+                    );
+
+                const prayerCards =
+                    document.querySelectorAll(
+                        ".prayer-card"
+                    );
+
+                const noResults =
+                    document.getElementById(
+                        "noResults"
+                    );
+
+                const visibleCount =
+                    document.getElementById(
+                        "visiblePrayerCount"
+                    );
+
+
+                if (
+                    !searchInput ||
+                    !moodFilter ||
+                    !prayerCards.length
+                ) {
+                    return;
+                }
+
+
+                function filterPrayers() {
+
+                    const searchTerm =
+                        searchInput.value
+                            .toLowerCase()
+                            .trim();
+
+                    const selectedMood =
+                        moodFilter.value
+                            .toLowerCase();
+
+                    let count = 0;
+
+
+                    prayerCards.forEach(
+                        function (card) {
+
+                            const prayerText =
+                                card.innerText
+                                    .toLowerCase();
+
+                            const cardMood =
+                                card.dataset.mood
+                                    .toLowerCase();
+
+
+                            const matchesSearch =
+                                prayerText.includes(
+                                    searchTerm
+                                );
+
+
+                            const matchesMood =
+                                selectedMood === "all" ||
+                                cardMood === selectedMood;
+
+
+                            if (
+                                matchesSearch &&
+                                matchesMood
+                            ) {
+
+                                card.style.display =
+                                    "";
+
+                                count++;
+
+                            } else {
+
+                                card.style.display =
+                                    "none";
+
+                            }
+
+                        }
+                    );
+
+
+                    if (visibleCount) {
+
+                        visibleCount.textContent =
+                            count;
+
+                    }
+
+
+                    if (noResults) {
+
+                        noResults.style.display =
+                            count === 0
+                                ? "block"
+                                : "none";
+
+                    }
+
+                }
+
+
+                searchInput.addEventListener(
+                    "input",
+                    filterPrayers
+                );
+
+
+                moodFilter.addEventListener(
+                    "change",
+                    filterPrayers
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

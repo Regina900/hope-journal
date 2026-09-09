@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Account | Hope Journal</title>
+
+
+    <style>
+
+        /* ==============================
+           RESET
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* ==============================
+           BODY
+        ============================== */
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px 20px;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: #44394f;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(255, 255, 255, 0.95),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f5f0ff,
+                    #fff8f1,
+                    #eef8f3
+                );
+        }
+
+
+        /* ==============================
+           CONTAINER
+        ============================== */
+
+        .page-container {
+
+            width: 100%;
+
+            max-width: 480px;
+        }
+
+
+        /* ==============================
+           BRAND
+        ============================== */
+
+        .brand {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .brand a {
+
+            color: #68518c;
+
+            text-decoration: none;
+
+            font-size: 1.45rem;
+
+            font-weight: bold;
+        }
+
+
+        /* ==============================
+           CARD
+        ============================== */
+
+        .register-card {
+
+            background:
+                rgba(255, 255, 255, 0.91);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-radius: 28px;
+
+            padding:
+                40px 38px;
+
+            box-shadow:
+                0 22px 60px
+                rgba(70, 50, 90, 0.11);
+        }
+
+
+        /* ==============================
+           HEADER
+        ============================== */
+
+        .header {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .header-icon {
+
+            font-size: 2.8rem;
+
+            margin-bottom: 12px;
+        }
+
+
+        .header h1 {
+
+            color: #514167;
+
+            font-size: 2rem;
+
+            margin-bottom: 12px;
+        }
+
+
+        .header p {
+
+            color: #756b7e;
+
+            line-height: 1.7;
+
+            font-size: 0.95rem;
+        }
+
+
+        /* ==============================
+           FLASH MESSAGES
+        ============================== */
+
+        .messages {
+
+            margin-bottom: 22px;
+        }
+
+
+        .message {
+
+            padding:
+                12px 14px;
+
+            margin-bottom: 9px;
+
+            border-radius: 12px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.85rem;
+
+            line-height: 1.5;
+        }
+
+
+        .message.success {
+
+            background: #e8f4eb;
+
+            color: #4c7056;
+
+            border:
+                1px solid #cce5d2;
+        }
+
+
+        .message.error {
+
+            background: #faeeee;
+
+            color: #895858;
+
+            border:
+                1px solid #efd0d0;
+        }
+
+
+        /* ==============================
+           FORM
+        ============================== */
+
+        .form-group {
+
+            margin-bottom: 20px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            color: #554367;
+
+            font-size: 0.92rem;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 1rem;
+
+            pointer-events: none;
+        }
+
+
+        .input-wrapper input {
+
+            width: 100%;
+
+            padding:
+                14px 15px 14px 43px;
+
+            border:
+                1px solid #ddd4e5;
+
+            border-radius: 14px;
+
+            background:
+                #fffdfb;
+
+            color: #44394f;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.95rem;
+
+            outline: none;
+
+            transition:
+                border 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .input-wrapper input:focus {
+
+            border-color:
+                #9b82b7;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(155, 130, 183, 0.12);
+        }
+
+
+        .input-wrapper input::placeholder {
+
+            color: #aaa1ac;
+        }
+
+
+        .password-hint {
+
+            margin-top: 7px;
+
+            color: #928995;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.76rem;
+        }
+
+
+        /* ==============================
+           PRIVACY MESSAGE
+        ============================== */
+
+        .privacy-note {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+            padding:
+                14px;
+
+            margin:
+                8px 0 25px;
+
+            border-radius: 13px;
+
+            background:
+                #f7f3fa;
+
+            color: #766b7e;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.78rem;
+
+            line-height: 1.55;
+        }
+
+
+        .privacy-icon {
+
+            font-size: 1.05rem;
+        }
+
+
+        /* ==============================
+           BUTTON
+        ============================== */
+
+        .submit-button {
+
+            width: 100%;
+
+            border: none;
+
+            padding:
+                15px;
+
+            border-radius: 30px;
+
+            background:
+                #73579a;
+
+            color: white;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.95rem;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 9px 23px
+                rgba(115, 87, 154, 0.22);
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .submit-button:hover {
+
+            background:
+                #604681;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* ==============================
+           LOGIN LINK
+        ============================== */
+
+        .login-link {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #766b7e;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.87rem;
+        }
+
+
+        .login-link a {
+
+            color: #70558f;
+
+            text-decoration: none;
+
+            font-weight: 600;
+        }
+
+
+        .login-link a:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        footer {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #91879a;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.78rem;
+
+            line-height: 1.5;
+        }
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 520px) {
+
+            body {
+
+                padding:
+                    20px 14px;
+            }
+
+
+            .register-card {
+
+                padding:
+                    30px 22px;
+
+                border-radius: 23px;
+            }
+
+
+            .header h1 {
+
+                font-size: 1.7rem;
+            }
+
+
+            .header p {
+
+                font-size: 0.88rem;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="page-container">
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <a href="{{ url_for('index') }}">
+
+                🌿 Hope Journal
+
+            </a>
+
+        </div>
+
+
+
+        <!-- REGISTER CARD -->
+
+        <main class="register-card">
+
+
+            <!-- HEADER -->
+
+            <header class="header">
+
+                <div class="header-icon">
+                    🌱
+                </div>
+
+
+                <h1>
+                    Create Your Account
+                </h1>
+
+
+                <p>
+
+                    Create your private space to
+                    reflect, write, pray, and grow
+                    in hope.
+
+                </p>
+
+            </header>
+
+
+
+            <!-- FLASH MESSAGES -->
+
+            {% with messages =
+                get_flashed_messages(
+                    with_categories=true
+                )
+            %}
+
+                {% if messages %}
+
+                    <div class="messages">
+
+                        {% for category, message in messages %}
+
+                            <div
+                                class="message {{ category }}"
+                            >
+
+                                {{ message }}
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+            {% endwith %}
+
+
+
+            <!-- REGISTRATION FORM -->
+
+            <form method="POST">
+
+
+                <!-- USERNAME -->
+
+                <div class="form-group">
+
+                    <label for="username">
+
+                        👤 Username
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            👤
+                        </span>
+
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            maxlength="50"
+                            placeholder="Choose a username"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+
+                        🔒 Password
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            minlength="8"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <p class="password-hint">
+
+                        Your password must contain at least
+                        8 characters.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="confirm_password">
+
+                        🔐 Confirm Password
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔐
+                        </span>
+
+
+                        <input
+                            type="password"
+                            id="confirm_password"
+                            name="confirm_password"
+                            minlength="8"
+                            placeholder="Enter your password again"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PRIVACY -->
+
+                <div class="privacy-note">
+
+                    <div class="privacy-icon">
+                        🔒
+                    </div>
+
+
+                    <div>
+
+                        Your journal is connected to your
+                        account so you can return to your
+                        reflections later.
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                >
+
+                    🌱 Create My Hope Journal
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- LOGIN -->
+
+            <div class="login-link">
+
+                Already have an account?
+
+                <a
+                    href="{{ url_for('auth.login') }}"
+                >
+                    Log in
+                </a>
+
+            </div>
+
+
+        </main>
+
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            💜 A quiet space to reflect,
+            pray, and grow in hope.
+
+        </footer>
+
+
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard | Hope Journal</title>
+
+
+    <style>
+
+        /* =====================================
+           RESET
+        ===================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* =====================================
+           BODY
+        ===================================== */
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: #3d3552;
+
+            background:
+
+                radial-gradient(
+                    circle at top left,
+                    rgba(255, 255, 255, 0.95),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f5f0ff,
+                    #fff8f1,
+                    #eef8f3
+                );
+        }
+
+
+        /* =====================================
+           NAVIGATION
+        ===================================== */
+
+        nav {
+
+            width: 100%;
+
+            padding:
+                18px 6%;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            background:
+                rgba(255, 255, 255, 0.78);
+
+            backdrop-filter:
+                blur(14px);
+
+            -webkit-backdrop-filter:
+                blur(14px);
+
+            border-bottom:
+                1px solid
+                rgba(100, 80, 120, 0.12);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+
+            color: #68518c;
+
+            text-decoration: none;
+
+            font-size: 1.5rem;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 24px;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+        }
+
+
+        .nav-links a {
+
+            color: #5c506d;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.9rem;
+
+            transition:
+                color 0.2s ease;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #7959a6;
+        }
+
+
+        .logout {
+
+            color: #9a6372 !important;
+        }
+
+
+        /* =====================================
+           MAIN
+        ===================================== */
+
+        main {
+
+            width: 90%;
+
+            max-width: 1100px;
+
+            margin:
+                55px auto 0;
+        }
+
+
+        /* =====================================
+           WELCOME
+        ===================================== */
+
+        .welcome {
+
+            text-align: center;
+
+            margin-bottom: 42px;
+        }
+
+
+        .small-title {
+
+            display: inline-block;
+
+            padding:
+                7px 15px;
+
+            margin-bottom: 17px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(255, 255, 255, 0.65);
+
+            color: #9079a9;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.76rem;
+
+            font-weight: 600;
+
+            letter-spacing: 1.8px;
+
+            text-transform: uppercase;
+        }
+
+
+        h1 {
+
+            color: #514167;
+
+            font-size:
+                clamp(2.2rem, 5vw, 3.8rem);
+
+            line-height: 1.15;
+
+            margin-bottom: 16px;
+        }
+
+
+        .welcome p {
+
+            max-width: 680px;
+
+            margin: auto;
+
+            color: #756b7e;
+
+            font-size: 1.05rem;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================
+           QUICK ACTIONS
+        ===================================== */
+
+        .quick-actions {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            margin-bottom: 38px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .quick-action {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding:
+                10px 17px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(255, 255, 255, 0.7);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            color: #654d80;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.85rem;
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .quick-action:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                #ffffff;
+
+            box-shadow:
+                0 8px 20px
+                rgba(70, 50, 90, 0.08);
+        }
+
+
+        /* =====================================
+           CARDS
+        ===================================== */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                35px;
+
+            min-height: 285px;
+
+            background:
+                rgba(255, 255, 255, 0.86);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.08);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 130px;
+
+            height: 130px;
+
+            right: -55px;
+
+            top: -55px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(245, 239, 252, 0.7);
+        }
+
+
+        .card:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 22px 55px
+                rgba(70, 50, 90, 0.13);
+        }
+
+
+        .card-icon {
+
+            width: 62px;
+
+            height: 62px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 20px;
+
+            border-radius: 19px;
+
+            background:
+                #f2ebf8;
+
+            font-size: 2rem;
+        }
+
+
+        .card h2 {
+
+            color: #554367;
+
+            font-size: 1.45rem;
+
+            margin-bottom: 12px;
+        }
+
+
+        .card p {
+
+            max-width: 480px;
+
+            color: #766d7d;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================
+           NEW SPIRITUAL RESOURCE CARDS
+        ===================================== */
+
+        .resource-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                35px;
+
+            min-height: 285px;
+
+            background:
+                rgba(255, 255, 255, 0.86);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.08);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .resource-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 22px 55px
+                rgba(70, 50, 90, 0.13);
+        }
+
+
+        .resource-card.prayer {
+
+            border-top:
+                5px solid
+                #c49b72;
+        }
+
+
+        .resource-card.scripture {
+
+            border-top:
+                5px solid
+                #87a878;
+        }
+
+
+        /* =====================================
+           INSIGHTS RESOURCE CARD
+        ===================================== */
+
+        .resource-card.insights {
+
+            border-top:
+                5px solid
+                #9a7bb8;
+        }
+
+
+        .resource-icon {
+
+            width: 62px;
+
+            height: 62px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 20px;
+
+            border-radius: 19px;
+
+            font-size: 2rem;
+        }
+
+
+        .prayer .resource-icon {
+
+            background:
+                #f5eee5;
+        }
+
+
+        .scripture .resource-icon {
+
+            background:
+                #edf5e9;
+        }
+
+
+        .insights .resource-icon {
+
+            background:
+                #f1eafa;
+        }
+
+
+        .resource-card h2 {
+
+            color: #554367;
+
+            font-size: 1.45rem;
+
+            margin-bottom: 12px;
+        }
+
+
+        .resource-card p {
+
+            color: #766d7d;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================
+           SECTION LABEL
+        ===================================== */
+
+        .section-heading {
+
+            text-align: center;
+
+            margin:
+                45px 0 22px;
+        }
+
+
+        .section-heading h2 {
+
+            color: #5b4770;
+
+            font-size: 1.55rem;
+
+            margin-bottom: 7px;
+        }
+
+
+        .section-heading p {
+
+            color: #84798b;
+
+            font-size: 0.92rem;
+        }
+
+
+        /* =====================================
+           BUTTONS
+        ===================================== */
+
+        .button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                13px 22px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-weight: 600;
+
+            font-size: 0.88rem;
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .primary {
+
+            background:
+                #73579a;
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px
+                rgba(115, 87, 154, 0.22);
+        }
+
+
+        .primary:hover {
+
+            background:
+                #604681;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .secondary {
+
+            background:
+                #eee7f5;
+
+            color:
+                #654d80;
+        }
+
+
+        .secondary:hover {
+
+            background:
+                #e2d8ed;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .prayer-button {
+
+            background:
+                #806a52;
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px
+                rgba(128, 106, 82, 0.18);
+        }
+
+
+        .prayer-button:hover {
+
+            background:
+                #6f5943;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .scripture-button {
+
+            background:
+                #718d65;
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px
+                rgba(113, 141, 101, 0.18);
+        }
+
+
+        .scripture-button:hover {
+
+            background:
+                #5f7954;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =====================================
+           INSIGHTS BUTTON
+        ===================================== */
+
+        .insights-button {
+
+            background:
+                #765b95;
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px
+                rgba(118, 91, 149, 0.18);
+        }
+
+
+        .insights-button:hover {
+
+            background:
+                #62497d;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =====================================
+           HOPE BOX
+        ===================================== */
+
+        .hope-box {
+
+            margin-top: 30px;
+
+            padding:
+                38px 30px;
+
+            border-radius: 26px;
+
+            background:
+                rgba(255, 250, 240, 0.9);
+
+            border:
+                1px solid
+                rgba(180, 150, 110, 0.15);
+
+            text-align: center;
+
+            box-shadow:
+                0 12px 35px
+                rgba(100, 75, 45, 0.05);
+        }
+
+
+        .hope-icon {
+
+            font-size: 2rem;
+
+            margin-bottom: 10px;
+        }
+
+
+        .hope-box h2 {
+
+            color: #745d46;
+
+            font-size: 1.4rem;
+
+            margin-bottom: 12px;
+        }
+
+
+        .hope-box p {
+
+            max-width: 720px;
+
+            margin: auto;
+
+            color: #7b7065;
+
+            line-height: 1.8;
+
+            font-size: 0.96rem;
+        }
+
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+
+            text-align: center;
+
+            margin:
+                48px 0 28px;
+
+            padding:
+                0 20px;
+
+            color: #91879a;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.78rem;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (max-width: 750px) {
+
+            nav {
+
+                padding:
+                    16px 5%;
+            }
+
+
+            .nav-links {
+
+                gap: 12px;
+            }
+
+
+            .nav-links a {
+
+                font-size: 0.78rem;
+            }
+
+
+            main {
+
+                margin-top:
+                    40px;
+            }
+
+
+            .cards {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .card,
+            .resource-card {
+
+                min-height: auto;
+
+                padding:
+                    29px;
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            nav {
+
+                align-items:
+                    flex-start;
+
+                gap: 15px;
+            }
+
+
+            .logo {
+
+                font-size:
+                    1.25rem;
+            }
+
+
+            .nav-links {
+
+                gap: 8px;
+
+                flex-wrap:
+                    wrap;
+
+                justify-content:
+                    flex-end;
+            }
+
+
+            .nav-links a {
+
+                font-size:
+                    0.72rem;
+            }
+
+
+            h1 {
+
+                font-size:
+                    2.25rem;
+            }
+
+
+            .welcome p {
+
+                font-size:
+                    0.92rem;
+            }
+
+
+            .quick-actions {
+
+                gap: 8px;
+            }
+
+
+            .quick-action {
+
+                font-size:
+                    0.75rem;
+
+                padding:
+                    9px 13px;
+            }
+
+
+            .hope-box {
+
+                padding:
+                    30px 22px;
+            }
+
+
+            .section-heading h2 {
+
+                font-size:
+                    1.35rem;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================
+         NAVIGATION
+    ================================== -->
+
+    <nav>
+
+        <a
+            href="{{ url_for('index') }}"
+            class="logo"
+        >
+            🌿 Hope Journal
+        </a>
+
+
+        <div class="nav-links">
+
+            <a
+                href="{{ url_for('index') }}"
+            >
+                Home
+            </a>
+
+
+            <a
+                href="{{ url_for('journal.create_journal') }}"
+            >
+                ✍️ Write
+            </a>
+
+
+            <a
+                href="{{ url_for('journal.journal_history') }}"
+            >
+                📖 My Journal
+            </a>
+
+
+            <a
+                href="{{ url_for('prayer.prayer_page') }}"
+            >
+                🙏 Prayers
+            </a>
+
+
+            <a
+                href="{{ url_for('scriptures.scriptures_page') }}"
+            >
+                📖 Scriptures
+            </a>
+
+
+            <!-- NEW INSIGHTS LINK -->
+
+            <a
+                href="{{ url_for('insights.insights_page') }}"
+            >
+                🌱 Insights
+            </a>
+
+
+            <a
+                href="{{ url_for('auth.logout') }}"
+                class="logout"
+            >
+                Log Out
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =================================
+         MAIN DASHBOARD
+    ================================== -->
+
+    <main>
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome">
+
+            <div class="small-title">
+
+                Your private space for hope
+
+            </div>
+
+
+            <h1>
+
+                Welcome, {{ username }} 🌱
+
+            </h1>
+
+
+            <p>
+
+                Take a moment to slow down, write honestly,
+                and discover encouragement for the journey ahead.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- QUICK ACTIONS -->
+
+        <div class="quick-actions">
+
+
+            <a
+                href="{{ url_for('journal.create_journal') }}"
+                class="quick-action"
+            >
+
+                ✍️
+                New Journal Entry
+
+            </a>
+
+
+            <a
+                href="{{ url_for('journal.journal_history') }}"
+                class="quick-action"
+            >
+
+                📖
+                View My Journal
+
+            </a>
+
+
+            <a
+                href="{{ url_for('prayer.prayer_page') }}"
+                class="quick-action"
+            >
+
+                🙏
+                My Prayers
+
+            </a>
+
+
+            <a
+                href="{{ url_for('scriptures.scriptures_page') }}"
+                class="quick-action"
+            >
+
+                📖
+                Scriptures
+
+            </a>
+
+
+            <!-- NEW INSIGHTS QUICK ACTION -->
+
+            <a
+                href="{{ url_for('insights.insights_page') }}"
+                class="quick-action"
+            >
+
+                🌱
+                My Insights
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================
+             JOURNAL CARDS
+        ================================== -->
+
+        <section class="cards">
+
+
+            <!-- WRITE -->
+
+            <article class="card">
+
+                <div class="card-icon">
+
+                    ✍️
+
+                </div>
+
+
+                <h2>
+
+                    Write in My Journal
+
+                </h2>
+
+
+                <p>
+
+                    Put your thoughts, feelings, worries,
+                    gratitude, and hopes into words.
+                    This is your private space to be honest.
+
+                </p>
+
+
+                <a
+                    href="{{ url_for('journal.create_journal') }}"
+                    class="button primary"
+                >
+
+                    Write Today →
+
+                </a>
+
+            </article>
+
+
+
+            <!-- HISTORY -->
+
+            <article class="card">
+
+                <div class="card-icon">
+
+                    📖
+
+                </div>
+
+
+                <h2>
+
+                    My Journal
+
+                </h2>
+
+
+                <p>
+
+                    Look back at your previous entries,
+                    encouragement, prayers, Scripture,
+                    and reflections whenever you need them.
+
+                </p>
+
+
+                <a
+                    href="{{ url_for('journal.journal_history') }}"
+                    class="button secondary"
+                >
+
+                    View My Journal →
+
+                </a>
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             SPIRITUAL RESOURCES
+        ================================== -->
+
+        <section class="section-heading">
+
+            <h2>
+
+                Your Hope Resources 🌿
+
+            </h2>
+
+
+            <p>
+
+                Revisit the prayers, Scriptures, and insights
+                saved from your journal reflections.
+
+            </p>
+
+        </section>
+
+
+
+        <section class="cards">
+
+
+            <!-- PRAYERS -->
+
+            <article class="resource-card prayer">
+
+                <div class="resource-icon">
+
+                    🙏
+
+                </div>
+
+
+                <h2>
+
+                    My Prayers
+
+                </h2>
+
+
+                <p>
+
+                    Revisit the prayers created from your
+                    journal reflections. Return here whenever
+                    you want a quiet moment of prayer.
+
+                </p>
+
+
+                <a
+                    href="{{ url_for('prayer.prayer_page') }}"
+                    class="button prayer-button"
+                >
+
+                    View My Prayers →
+
+                </a>
+
+            </article>
+
+
+
+            <!-- SCRIPTURES -->
+
+            <article class="resource-card scripture">
+
+                <div class="resource-icon">
+
+                    📖
+
+                </div>
+
+
+                <h2>
+
+                    Saved Scriptures
+
+                </h2>
+
+
+                <p>
+
+                    Keep the Scripture references and passages
+                    connected to your journal reflections in
+                    one peaceful place.
+
+                </p>
+
+
+                <a
+                    href="{{ url_for('scriptures.scriptures_page') }}"
+                    class="button scripture-button"
+                >
+
+                    Read Scriptures →
+
+                </a>
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             INSIGHTS RESOURCE
+        ================================== -->
+
+        <section class="cards" style="margin-top: 25px;">
+
+
+            <article class="resource-card insights">
+
+                <div class="resource-icon">
+
+                    🌱
+
+                </div>
+
+
+                <h2>
+
+                    My Insights
+
+                </h2>
+
+
+                <p>
+
+                    Gently look back at your journaling journey,
+                    notice your most common moods, see how many
+                    entries you've written, and reflect on moments
+                    of hope along the way.
+
+                </p>
+
+
+                <a
+                    href="{{ url_for('insights.insights_page') }}"
+                    class="button insights-button"
+                >
+
+                    View My Insights →
+
+                </a>
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- DAILY HOPE -->
+
+        <section class="hope-box">
+
+
+            <div class="hope-icon">
+
+                🌿
+
+            </div>
+
+
+            <h2>
+
+                A Little Reminder
+
+            </h2>
+
+
+            <p>
+
+                You don't have to have everything figured out today.
+                One honest thought, one small step, and one moment
+                of hope can be enough for today.
+
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =================================
+         FOOTER
+    ================================== -->
+
+    <footer>
+
+        💜 Hope Journal — A private space to reflect,
+        pray, and grow in hope.
+
+    </footer>
+
+
+</body>
+
+</html>

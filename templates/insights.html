@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Insights | Hope Journal</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <style>
+
+        /* =========================================
+           INSIGHTS PAGE
+           Hope Journal Visual Design
+        ========================================= */
+
+        .insights-page {
+            width: 90%;
+            max-width: 1100px;
+            margin: 55px auto 80px;
+        }
+
+
+        /* =========================================
+           PAGE HEADER
+        ========================================= */
+
+        .insights-header {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .insights-eyebrow {
+            display: inline-block;
+
+            padding: 7px 15px;
+            margin-bottom: 15px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(255, 255, 255, 0.65);
+
+            color: #9079a9;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.76rem;
+            font-weight: 600;
+
+            letter-spacing: 1.8px;
+
+            text-transform: uppercase;
+        }
+
+        .insights-header h1 {
+            color: #514167;
+
+            font-size:
+                clamp(2.3rem, 5vw, 3.8rem);
+
+            line-height: 1.15;
+
+            margin-bottom: 16px;
+        }
+
+        .insights-header p {
+            max-width: 680px;
+
+            margin: auto;
+
+            color: #756b7e;
+
+            font-size: 1.05rem;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================
+           STATISTICS GRID
+        ========================================= */
+
+        .insights-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 22px;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =========================================
+           INSIGHT CARDS
+        ========================================= */
+
+        .insight-card {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 30px;
+
+            min-height: 275px;
+
+            background:
+                rgba(255, 255, 255, 0.86);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.08);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .insight-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 130px;
+            height: 130px;
+
+            right: -60px;
+            top: -60px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(245, 239, 252, 0.75);
+        }
+
+        .insight-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 22px 55px
+                rgba(70, 50, 90, 0.13);
+        }
+
+
+        /* =========================================
+           CARD ICON
+        ========================================= */
+
+        .insight-icon {
+            width: 62px;
+            height: 62px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 20px;
+
+            border-radius: 19px;
+
+            background:
+                #f2ebf8;
+
+            font-size: 1.9rem;
+        }
+
+
+        /* =========================================
+           STAT NUMBER
+        ========================================= */
+
+        .insight-number {
+            color: #604b72;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 2.8rem;
+
+            font-weight: bold;
+
+            line-height: 1;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================================
+           MOOD HIGHLIGHT
+        ========================================= */
+
+        .insight-highlight {
+            display: inline-block;
+
+            max-width: 100%;
+
+            padding:
+                8px 15px;
+
+            margin-bottom: 12px;
+
+            border-radius: 22px;
+
+            background:
+                #f1eafa;
+
+            color: #70558f;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 1rem;
+
+            font-weight: 600;
+
+            line-height: 1.4;
+        }
+
+
+        /* =========================================
+           CARD TEXT
+        ========================================= */
+
+        .insight-card h2 {
+            color: #554367;
+
+            font-size: 1.3rem;
+
+            margin-bottom: 10px;
+        }
+
+        .insight-card p {
+            color: #766d7d;
+
+            line-height: 1.75;
+
+            font-size: 0.94rem;
+        }
+
+
+        /* =========================================
+           RECENT REFLECTION
+        ========================================= */
+
+        .recent-insight {
+            display: grid;
+
+            grid-template-columns:
+                auto 1fr;
+
+            gap: 25px;
+
+            align-items: start;
+
+            margin-bottom: 28px;
+
+            padding: 35px;
+
+            background:
+                rgba(255, 255, 255, 0.88);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-left:
+                5px solid #8da7b8;
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.08);
+        }
+
+        .recent-icon {
+            width: 65px;
+            height: 65px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 20px;
+
+            background:
+                #edf4f7;
+
+            font-size: 2rem;
+        }
+
+        .recent-content .insights-eyebrow {
+            margin-bottom: 8px;
+        }
+
+        .recent-content h2 {
+            color: #554367;
+
+            font-size: 1.5rem;
+
+            margin-bottom: 14px;
+        }
+
+        .recent-content p {
+            color: #756b7e;
+
+            line-height: 1.8;
+
+            margin:
+                15px 0 22px;
+        }
+
+
+        /* =========================================
+           MOOD BADGE
+        ========================================= */
+
+        .mood {
+            display: inline-block;
+
+            padding:
+                7px 13px;
+
+            border-radius: 20px;
+
+            background:
+                #f1eafa;
+
+            color: #70558f;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.82rem;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================================
+           EMPTY STATE
+        ========================================= */
+
+        .empty-state {
+            max-width: 680px;
+
+            margin:
+                0 auto 28px;
+
+            padding:
+                55px 35px;
+
+            text-align: center;
+
+            background:
+                rgba(255, 255, 255, 0.86);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.08);
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+
+            margin-bottom: 18px;
+        }
+
+        .empty-state h2 {
+            color: #554367;
+
+            margin-bottom: 14px;
+        }
+
+        .empty-state p {
+            color: #756b7e;
+
+            line-height: 1.8;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =========================================
+           REMINDER / MESSAGE
+        ========================================= */
+
+        .insight-message {
+            margin-bottom: 30px;
+
+            padding:
+                38px 30px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(244, 238, 250, 0.95),
+                    rgba(255, 250, 245, 0.95)
+                );
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.1);
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(70, 50, 90, 0.06);
+        }
+
+        .message-icon {
+            font-size: 2rem;
+
+            margin-bottom: 10px;
+        }
+
+        .insight-message h2 {
+            color: #74578f;
+
+            margin-bottom: 12px;
+        }
+
+        .insight-message p {
+            max-width: 720px;
+
+            margin: auto;
+
+            color: #756b7e;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================================
+           QUICK ACTIONS
+        ========================================= */
+
+        .quick-actions {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 10px;
+        }
+
+        .quick-action {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding:
+                10px 17px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(255, 255, 255, 0.72);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            color: #654d80;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.85rem;
+
+            transition:
+                0.2s ease;
+        }
+
+        .quick-action:hover {
+            transform:
+                translateY(-2px);
+
+            background:
+                #ffffff;
+
+            box-shadow:
+                0 8px 20px
+                rgba(70, 50, 90, 0.08);
+
+            text-decoration: none;
+        }
+
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
+
+        .button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                13px 22px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-weight: 600;
+
+            font-size: 0.88rem;
+
+            transition:
+                0.2s ease;
+        }
+
+        .button:hover {
+            text-decoration: none;
+        }
+
+        .primary {
+            background:
+                #73579a;
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px
+                rgba(115, 87, 154, 0.22);
+        }
+
+        .primary:hover {
+            background:
+                #604681;
+
+            transform:
+                translateY(-2px);
+        }
+
+        .secondary {
+            background:
+                #eee7f5;
+
+            color:
+                #654d80;
+        }
+
+        .secondary:hover {
+            background:
+                #e2d8ed;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            .insights-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .insight-card {
+                min-height: auto;
+            }
+        }
+
+
+        @media (max-width: 650px) {
+
+            .insights-page {
+                width: 92%;
+
+                margin:
+                    40px auto 60px;
+            }
+
+            .insights-header {
+                margin-bottom: 32px;
+            }
+
+            .insights-header h1 {
+                font-size: 2.35rem;
+            }
+
+            .insights-header p {
+                font-size: 0.94rem;
+            }
+
+            .insight-card {
+                padding: 27px;
+
+                border-radius: 22px;
+            }
+
+            .recent-insight {
+                grid-template-columns: 1fr;
+
+                padding: 27px;
+
+                border-radius: 22px;
+            }
+
+            .recent-icon {
+                width: 58px;
+                height: 58px;
+            }
+
+            .insight-message {
+                padding:
+                    30px 22px;
+
+                border-radius: 22px;
+            }
+
+            .quick-actions {
+                gap: 8px;
+            }
+
+            .quick-action {
+                font-size: 0.76rem;
+
+                padding:
+                    9px 13px;
+            }
+
+            .button {
+                width: 100%;
+
+                justify-content: center;
+
+                text-align: center;
+            }
+        }
+
+
+        @media (max-width: 400px) {
+
+            .insights-page {
+                width: 94%;
+            }
+
+            .insights-header h1 {
+                font-size: 2rem;
+            }
+
+            .insight-card {
+                padding: 22px;
+            }
+
+            .insight-number {
+                font-size: 2.4rem;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVIGATION
+    ========================================== -->
+
+    <nav>
+
+        <a
+            href="{{ url_for('index') }}"
+            class="logo"
+        >
+            🌿 Hope Journal
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('index') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('journal.create_journal') }}">
+                ✍️ Write
+            </a>
+
+            <a href="{{ url_for('journal.journal_history') }}">
+                📖 My Journal
+            </a>
+
+            <a href="{{ url_for('prayer.prayer_page') }}">
+                🙏 Prayers
+            </a>
+
+            <a href="{{ url_for('scriptures.scriptures_page') }}">
+                📖 Scriptures
+            </a>
+
+            <a href="{{ url_for('insights.insights_page') }}">
+                🌱 Insights
+            </a>
+
+            <a
+                href="{{ url_for('auth.logout') }}"
+                class="logout"
+            >
+                Log Out
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main class="insights-page">
+
+
+        <!-- PAGE HEADER -->
+
+        <section class="insights-header">
+
+            <div class="insights-eyebrow">
+                Your journey, reflected
+            </div>
+
+            <h1>
+                🌱 My Insights
+            </h1>
+
+            <p>
+                Take a gentle look at your journaling journey.
+                These insights help you notice patterns,
+                reflections, and moments of hope over time.
+            </p>
+
+        </section>
+
+
+        <!-- =========================================
+             STATISTICS
+        ========================================== -->
+
+        <section class="insights-grid">
+
+
+            <!-- TOTAL ENTRIES -->
+
+            <article class="insight-card">
+
+                <div class="insight-icon">
+                    📔
+                </div>
+
+                <div class="insight-number">
+                    {{ total_entries }}
+                </div>
+
+                <h2>
+                    Journal Entries
+                </h2>
+
+                <p>
+                    Moments you've taken to pause,
+                    reflect, and put your thoughts
+                    into words.
+                </p>
+
+            </article>
+
+
+            <!-- COMMON MOOD -->
+
+            <article class="insight-card">
+
+                <div class="insight-icon">
+                    💜
+                </div>
+
+                {% if common_mood %}
+
+                    <div class="insight-highlight">
+                        {{ common_mood }}
+                    </div>
+
+                {% else %}
+
+                    <div class="insight-highlight">
+                        Not enough data yet
+                    </div>
+
+                {% endif %}
+
+                <h2>
+                    Common Mood
+                </h2>
+
+                <p>
+                    A gentle indication of the mood
+                    that appears most often in your
+                    journal entries.
+                </p>
+
+            </article>
+
+
+            <!-- HOPE RESPONSES -->
+
+            <article class="insight-card">
+
+                <div class="insight-icon">
+                    🌿
+                </div>
+
+                <div class="insight-number">
+                    {{ response_count }}
+                </div>
+
+                <h2>
+                    Hope Responses
+                </h2>
+
+                <p>
+                    Encouragement, prayers, Scripture,
+                    and reflections created from your
+                    journal entries.
+                </p>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- =========================================
+             RECENT REFLECTION
+        ========================================== -->
+
+        {% if recent_entry %}
+
+            <section class="recent-insight">
+
+                <div class="recent-icon">
+                    💭
+                </div>
+
+
+                <div class="recent-content">
+
+                    <div class="insights-eyebrow">
+                        Your latest reflection
+                    </div>
+
+                    <h2>
+                        A Moment You Recently Shared
+                    </h2>
+
+
+                    {% if recent_entry.mood %}
+
+                        <div class="mood">
+                            {{ recent_entry.mood }}
+                        </div>
+
+                    {% endif %}
+
+
+                    <p>
+
+                        {% if recent_entry.content|length > 300 %}
+
+                            {{ recent_entry.content[:300] }}...
+
+                        {% else %}
+
+                            {{ recent_entry.content }}
+
+                        {% endif %}
+
+                    </p>
+
+
+                    <a
+                        href="{{ url_for(
+                            'journal.view_journal',
+                            entry_id=recent_entry.id
+                        ) }}"
+                        class="button secondary"
+                    >
+                        Read Reflection →
+                    </a>
+
+                </div>
+
+            </section>
+
+        {% else %}
+
+
+            <!-- EMPTY STATE -->
+
+            <section class="empty-state">
+
+                <div class="empty-icon">
+                    🌱
+                </div>
+
+                <h2>
+                    Your insights are just beginning
+                </h2>
+
+                <p>
+                    Once you begin writing journal entries,
+                    this space will help you look back at
+                    your journey and notice meaningful
+                    patterns over time.
+                </p>
+
+                <a
+                    href="{{ url_for('journal.create_journal') }}"
+                    class="button primary"
+                >
+                    ✍️ Write Your First Entry
+                </a>
+
+            </section>
+
+        {% endif %}
+
+
+        <!-- =========================================
+             REMINDER
+        ========================================== -->
+
+        <section class="insight-message">
+
+            <div class="message-icon">
+                🌿
+            </div>
+
+            <h2>
+                Remember
+            </h2>
+
+            <p>
+                Your journal is not a measure of how well
+                you're doing. It is simply a place to notice
+                where you are, what you're feeling, and the
+                moments of hope you discover along the way.
+            </p>
+
+        </section>
+
+
+        <!-- =========================================
+             QUICK LINKS
+        ========================================== -->
+
+        <div class="quick-actions">
+
+            <a
+                href="{{ url_for('journal.create_journal') }}"
+                class="quick-action"
+            >
+                ✍️ New Entry
+            </a>
+
+            <a
+                href="{{ url_for('journal.journal_history') }}"
+                class="quick-action"
+            >
+                📖 My Journal
+            </a>
+
+            <a
+                href="{{ url_for('prayer.prayer_page') }}"
+                class="quick-action"
+            >
+                🙏 My Prayers
+            </a>
+
+            <a
+                href="{{ url_for('scriptures.scriptures_page') }}"
+                class="quick-action"
+            >
+                📜 My Scriptures
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+        💜 Hope Journal — A private space to
+        reflect, pray, and grow in hope.
+
+    </footer>
+
+
+    <script
+        src="{{ url_for('static', filename='js/app.js') }}"
+    ></script>
+
+</body>
+
+</html>
+
