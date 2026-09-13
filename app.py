@@ -10,6 +10,7 @@ from routes.journal import journal
 from routes.prayer import prayer
 from routes.scriptures import scriptures
 from routes.insights import insights
+from routes.next_step import next_step
 
 def create_app():
 
@@ -35,6 +36,7 @@ def create_app():
     app.register_blueprint(prayer)
     app.register_blueprint(scriptures)
     app.register_blueprint(insights)
+    app.register_blueprint(next_step)
     
     # Home page
     @app.route("/")

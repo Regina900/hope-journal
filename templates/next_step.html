@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Your Next Step | Hope Journal</title>
+
+
+    <style>
+
+        /* =====================================
+           RESET
+        ===================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* =====================================
+           BODY
+        ===================================== */
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            color: #3d3552;
+
+            background:
+
+                radial-gradient(
+                    circle at top left,
+                    rgba(255, 255, 255, 0.95),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f5f0ff,
+                    #fff8f1,
+                    #eef8f3
+                );
+        }
+
+
+        /* =====================================
+           NAVIGATION
+        ===================================== */
+
+        nav {
+
+            width: 100%;
+
+            padding:
+                18px 6%;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            background:
+                rgba(255, 255, 255, 0.78);
+
+            backdrop-filter:
+                blur(14px);
+
+            -webkit-backdrop-filter:
+                blur(14px);
+
+            border-bottom:
+                1px solid
+                rgba(100, 80, 120, 0.12);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+
+            color: #68518c;
+
+            text-decoration: none;
+
+            font-size: 1.5rem;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 24px;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+        }
+
+
+        .nav-links a {
+
+            color: #5c506d;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.9rem;
+
+            transition:
+                color 0.2s ease;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #7959a6;
+        }
+
+
+        .logout {
+
+            color: #9a6372 !important;
+        }
+
+
+        /* =====================================
+           MAIN
+        ===================================== */
+
+        main {
+
+            width: 90%;
+
+            max-width: 900px;
+
+            margin:
+                55px auto 0;
+        }
+
+
+        /* =====================================
+           PAGE HEADER
+        ===================================== */
+
+        .page-header {
+
+            text-align: center;
+
+            margin-bottom: 32px;
+        }
+
+
+        .small-title {
+
+            display: inline-block;
+
+            padding:
+                7px 15px;
+
+            margin-bottom: 17px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(255, 255, 255, 0.65);
+
+            color: #9079a9;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.76rem;
+
+            font-weight: 600;
+
+            letter-spacing: 1.8px;
+
+            text-transform: uppercase;
+        }
+
+
+        h1 {
+
+            color: #514167;
+
+            font-size:
+                clamp(2.2rem, 5vw, 3.6rem);
+
+            line-height: 1.15;
+
+            margin-bottom: 16px;
+        }
+
+
+        .page-header > p {
+
+            max-width: 680px;
+
+            margin: auto;
+
+            color: #756b7e;
+
+            font-size: 1.02rem;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================
+           MAIN FEATURE CARD
+        ===================================== */
+
+        .next-step-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding:
+                42px 35px;
+
+            background:
+                rgba(255, 255, 255, 0.88);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.12);
+
+            border-top:
+                5px solid
+                #71957a;
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(70, 50, 90, 0.08);
+
+            text-align: center;
+        }
+
+
+        .next-step-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+
+            height: 150px;
+
+            right: -70px;
+
+            top: -70px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(231, 241, 232, 0.6);
+
+            pointer-events: none;
+        }
+
+
+        .next-step-icon {
+
+            width: 72px;
+
+            height: 72px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin:
+                0 auto 20px;
+
+            border-radius: 22px;
+
+            background:
+                #e9f2ea;
+
+            font-size: 2.25rem;
+        }
+
+
+        .next-step-card h2 {
+
+            color: #58705c;
+
+            font-size: 1.7rem;
+
+            margin-bottom: 10px;
+        }
+
+
+        .subtitle {
+
+            color: #7a897c;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.9rem;
+
+            line-height: 1.7;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =====================================
+           PRACTICAL ACTION
+        ===================================== */
+
+        .action-box {
+
+            max-width: 700px;
+
+            margin:
+                0 auto 28px;
+
+            padding:
+                28px 25px;
+
+            border-radius: 21px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(244, 250, 245, 0.98),
+                    rgba(255, 255, 255, 0.94)
+                );
+
+            border:
+                1px solid
+                rgba(112, 145, 119, 0.13);
+
+            text-align: left;
+        }
+
+
+        .action-label {
+
+            color: #718072;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.75rem;
+
+            font-weight: 700;
+
+            letter-spacing: 1.4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 10px;
+        }
+
+
+        .action-box h3 {
+
+            color: #526858;
+
+            font-size: 1.4rem;
+
+            line-height: 1.4;
+
+            margin-bottom: 12px;
+        }
+
+
+        .action-box p {
+
+            color: #68756b;
+
+            font-size: 0.98rem;
+
+            line-height: 1.85;
+        }
+
+
+        /* =====================================
+           SMALL STEP OPTIONS
+        ===================================== */
+
+        .small-steps {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 16px;
+
+            margin:
+                0 auto 30px;
+
+            max-width: 760px;
+        }
+
+
+        .step {
+
+            padding:
+                21px 17px;
+
+            border-radius: 19px;
+
+            background:
+                rgba(249, 247, 252, 0.88);
+
+            border:
+                1px solid
+                rgba(110, 90, 130, 0.10);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .step:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 22px
+                rgba(70, 50, 90, 0.06);
+        }
+
+
+        .step-icon {
+
+            font-size: 1.55rem;
+
+            margin-bottom: 9px;
+        }
+
+
+        .step h4 {
+
+            color: #5a5068;
+
+            font-size: 0.98rem;
+
+            margin-bottom: 7px;
+        }
+
+
+        .step p {
+
+            color: #756d7d;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.82rem;
+
+            line-height: 1.65;
+        }
+
+
+        /* =====================================
+           SAFETY SUPPORT
+        ===================================== */
+
+        .support-box {
+
+            max-width: 700px;
+
+            margin:
+                0 auto 30px;
+
+            padding:
+                25px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255, 250, 240, 0.88);
+
+            border:
+                1px solid
+                rgba(180, 150, 110, 0.15);
+
+            text-align: left;
+        }
+
+
+        .support-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            color: #745d46;
+
+            font-size: 1.05rem;
+
+            margin-bottom: 10px;
+        }
+
+
+        .support-box p {
+
+            color: #7b7065;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.86rem;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================
+           ACTION BUTTONS
+        ===================================== */
+
+        .button-row {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-top: 8px;
+        }
+
+
+        .button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                13px 22px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.88rem;
+
+            font-weight: 600;
+
+            transition:
+                0.2s ease;
+        }
+
+
+        .primary {
+
+            background:
+                #718d65;
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px
+                rgba(113, 141, 101, 0.18);
+        }
+
+
+        .primary:hover {
+
+            background:
+                #5f7954;
+
+            color: white;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .secondary {
+
+            background:
+                #eee7f5;
+
+            color:
+                #654d80;
+        }
+
+
+        .secondary:hover {
+
+            background:
+                #e2d8ed;
+
+            color:
+                #604681;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =====================================
+           FOOTER
+        ===================================== */
+
+        footer {
+
+            text-align: center;
+
+            margin:
+                48px 0 28px;
+
+            padding:
+                0 20px;
+
+            color: #91879a;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.78rem;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (max-width: 750px) {
+
+            nav {
+
+                padding:
+                    16px 5%;
+            }
+
+
+            .nav-links {
+
+                gap: 12px;
+            }
+
+
+            .nav-links a {
+
+                font-size: 0.78rem;
+            }
+
+
+            main {
+
+                margin-top:
+                    40px;
+            }
+
+
+            .next-step-card {
+
+                padding:
+                    34px 25px;
+            }
+
+
+            .small-steps {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        /* =====================================
+           SMALL MOBILE
+        ===================================== */
+
+        @media (max-width: 520px) {
+
+            nav {
+
+                align-items:
+                    flex-start;
+
+                gap: 15px;
+            }
+
+
+            .logo {
+
+                font-size:
+                    1.25rem;
+            }
+
+
+            .nav-links {
+
+                gap:
+                    8px;
+
+                flex-wrap:
+                    wrap;
+
+                justify-content:
+                    flex-end;
+            }
+
+
+            .nav-links a {
+
+                font-size:
+                    0.72rem;
+            }
+
+
+            h1 {
+
+                font-size:
+                    2.25rem;
+            }
+
+
+            .page-header > p {
+
+                font-size:
+                    0.92rem;
+            }
+
+
+            .next-step-card {
+
+                padding:
+                    30px 19px;
+            }
+
+
+            .action-box,
+            .support-box {
+
+                padding:
+                    21px 18px;
+            }
+
+
+            .action-box h3 {
+
+                font-size:
+                    1.22rem;
+            }
+
+
+            .button {
+
+                width:
+                    100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================
+         NAVIGATION
+    ================================== -->
+
+    <nav>
+
+        <a
+            href="{{ url_for('index') }}"
+            class="logo"
+        >
+            🌿 Hope Journal
+        </a>
+
+
+        <div class="nav-links">
+
+            <a
+                href="{{ url_for('index') }}"
+            >
+                Home
+            </a>
+
+
+            <a
+                href="{{ url_for('journal.create_journal') }}"
+            >
+                ✍️ Write
+            </a>
+
+
+            <a
+                href="{{ url_for('journal.journal_history') }}"
+            >
+                📖 My Journal
+            </a>
+
+
+            <a
+                href="{{ url_for('prayer.prayer_page') }}"
+            >
+                🙏 Prayers
+            </a>
+
+
+            <a
+                href="{{ url_for('scriptures.scriptures_page') }}"
+            >
+                📖 Scriptures
+            </a>
+
+
+            <a
+                href="{{ url_for('next_step.next_step_page') }}"
+            >
+                🌱 Next Step
+            </a>
+
+
+            <a
+                href="{{ url_for('insights.insights_page') }}"
+            >
+                🌱 Insights
+            </a>
+
+
+            <a
+                href="{{ url_for('auth.logout') }}"
+                class="logout"
+            >
+                Log Out
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =================================
+         MAIN
+    ================================== -->
+
+    <main>
+
+
+        <!-- PAGE INTRO -->
+
+        <section class="page-header">
+
+            <div class="small-title">
+
+                A small step can matter
+
+            </div>
+
+
+            <h1>
+
+                Your Next Step 🌱
+
+            </h1>
+
+
+            <p>
+
+                You don't have to solve everything today.
+                When life feels heavy, choosing one small,
+                practical action can help you move through
+                the moment gently.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================
+             MAIN NEXT STEP
+        ================================== -->
+
+        <section class="next-step-card">
+
+
+            <div class="next-step-icon">
+
+                🌱
+
+            </div>
+
+
+            <h2>
+
+                Start With One Small Step
+
+            </h2>
+
+
+            <p class="subtitle">
+
+                You don't need to do everything at once.
+                Choose what feels manageable right now.
+
+            </p>
+
+
+
+            <!-- PRACTICAL ACTION -->
+
+            <div class="action-box">
+
+                <div class="action-label">
+
+                    Try this now
+
+                </div>
+
+
+                <h3>
+
+                    Reach out to someone you trust 🤝
+
+                </h3>
+
+
+                <p>
+
+                    You don't have to explain everything.
+                    You could simply send a message such as,
+                    “I'm having a difficult day. Can we talk?”
+                    Letting someone know how you're doing can
+                    make a difficult moment feel less lonely.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- OTHER OPTIONS -->
+
+            <div class="small-steps">
+
+
+                <div class="step">
+
+                    <div class="step-icon">
+
+                        🌬️
+
+                    </div>
+
+
+                    <h4>
+
+                        Pause and breathe
+
+                    </h4>
+
+
+                    <p>
+
+                        Take five slow breaths and give
+                        yourself a quiet moment.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-icon">
+
+                        💧
+
+                    </div>
+
+
+                    <h4>
+
+                        Care for your body
+
+                    </h4>
+
+
+                    <p>
+
+                        Drink some water, stretch, or step
+                        away from your screen for a few minutes.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="step">
+
+                    <div class="step-icon">
+
+                        ✍️
+
+                    </div>
+
+
+                    <h4>
+
+                        Put it into words
+
+                    </h4>
+
+
+                    <p>
+
+                        Write down one thing you're feeling
+                        without worrying about making it perfect.
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SAFETY SUPPORT -->
+
+            <div class="support-box">
+
+
+                <h3 class="support-title">
+
+                    💜 When things feel unsafe
+
+                </h3>
+
+
+                <p>
+
+                    You don't have to handle a crisis alone.
+                    Consider staying with someone you trust,
+                    telling them how you're feeling, and seeking
+                    immediate local emergency or crisis support
+                    if you believe you may hurt yourself.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="button-row">
+
+
+                <a
+                    href="{{ url_for('journal.create_journal') }}"
+                    class="button primary"
+                >
+
+                    ✍️ Write About It
+
+                </a>
+
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="button secondary"
+                >
+
+                    ← Back to Dashboard
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =================================
+         FOOTER
+    ================================== -->
+
+    <footer>
+
+        💜 Hope Journal — A private space to reflect,
+        pray, and grow in hope.
+
+    </footer>
+
+
+</body>
+
+</html>
+

@@ -492,6 +492,18 @@
         }
 
 
+        /* =====================================
+           YOUR NEXT STEP RESOURCE CARD
+        ===================================== */
+
+        .resource-card.next-step {
+
+            border-top:
+                5px solid
+                #71957a;
+        }
+
+
         .resource-icon {
 
             width: 62px;
@@ -530,6 +542,13 @@
 
             background:
                 #f1eafa;
+        }
+
+
+        .next-step .resource-icon {
+
+            background:
+                #e9f2ea;
         }
 
 
@@ -724,6 +743,33 @@
 
             background:
                 #62497d;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =====================================
+           YOUR NEXT STEP BUTTON
+        ===================================== */
+
+        .next-step-button {
+
+            background:
+                #718d65;
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px
+                rgba(113, 141, 101, 0.18);
+        }
+
+
+        .next-step-button:hover {
+
+            background:
+                #5f7954;
 
             transform:
                 translateY(-2px);
@@ -1006,6 +1052,15 @@
             </a>
 
 
+            <!-- YOUR NEXT STEP NAVIGATION LINK -->
+
+            <a
+                href="{{ url_for('next_step.next_step_page') }}"
+            >
+                🌱 Next Step
+            </a>
+
+
             <!-- NEW INSIGHTS LINK -->
 
             <a
@@ -1109,6 +1164,19 @@
 
                 📖
                 Scriptures
+
+            </a>
+
+
+            <!-- YOUR NEXT STEP QUICK ACTION -->
+
+            <a
+                href="{{ url_for('next_step.next_step_page') }}"
+                class="quick-action"
+            >
+
+                🌱
+                Your Next Step
 
             </a>
 
@@ -1374,6 +1442,47 @@
             </article>
 
 
+            <!-- =================================
+                 YOUR NEXT STEP RESOURCE
+            ================================== -->
+
+            <article class="resource-card next-step">
+
+                <div class="resource-icon">
+
+                    🌱
+
+                </div>
+
+
+                <h2>
+
+                    Your Next Step
+
+                </h2>
+
+
+                <p>
+
+                    Find one small, practical step you can take
+                    today when things feel difficult or overwhelming.
+                    You don't have to figure everything out at once.
+
+                </p>
+
+
+                <a
+                    href="{{ url_for('next_step.next_step_page') }}"
+                    class="button next-step-button"
+                >
+
+                    Find My Next Step →
+
+                </a>
+
+            </article>
+
+
         </section>
 
 
@@ -1428,3 +1537,4 @@
 </body>
 
 </html>
+

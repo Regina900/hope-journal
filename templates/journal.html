@@ -839,20 +839,37 @@
 
 
         /* ==============================
-           BOTTOM LINK
+           BOTTOM ACTIONS
         ============================== */
 
-        .back-link {
+        .bottom-actions {
 
-            text-align: center;
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
 
             margin-top: 30px;
         }
 
 
-        .back-link a {
+        .bottom-button {
 
-            color: #70558f;
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                12px 20px;
+
+            border-radius: 30px;
 
             text-decoration: none;
 
@@ -860,22 +877,115 @@
                 Arial,
                 sans-serif;
 
-            font-size: 0.9rem;
+            font-size: 0.88rem;
 
             font-weight: 600;
 
             transition:
-                color 0.2s ease;
+                transform 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
 
-        .back-link a:hover {
+        .bottom-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            text-decoration: none;
+        }
+
+
+        .journal-button {
+
+            background:
+                #eee7f5;
+
+            color:
+                #654d80;
+        }
+
+
+        .journal-button:hover {
+
+            background:
+                #e2d8ed;
 
             color:
                 #604681;
+        }
 
-            text-decoration:
-                underline;
+
+        .next-step-button {
+
+            background:
+                #e9f2ea;
+
+            color:
+                #58705c;
+
+            border:
+                1px solid
+                rgba(113, 149, 122, 0.18);
+        }
+
+
+        .next-step-button:hover {
+
+            background:
+                #dfeee1;
+
+            color:
+                #4f6954;
+        }
+
+
+        .insights-button {
+
+            background:
+                #f1eafa;
+
+            color:
+                #765b95;
+        }
+
+
+        .insights-button:hover {
+
+            background:
+                #e7def2;
+
+            color:
+                #62497d;
+        }
+
+
+        .write-button {
+
+            background:
+                #73579a;
+
+            color:
+                white;
+
+            box-shadow:
+                0 7px 18px
+                rgba(115, 87, 154, 0.17);
+        }
+
+
+        .write-button:hover {
+
+            background:
+                #604681;
+
+            color:
+                white;
+
+            box-shadow:
+                0 10px 23px
+                rgba(115, 87, 154, 0.23);
         }
 
 
@@ -928,7 +1038,8 @@
 
             .nav-links a {
 
-                font-size: 0.76rem;
+                font-size:
+                    0.76rem;
             }
 
 
@@ -969,6 +1080,26 @@
 
                 width:
                     100%;
+            }
+
+
+            .bottom-actions {
+
+                flex-direction:
+                    column;
+
+                width:
+                    100%;
+            }
+
+
+            .bottom-button {
+
+                width:
+                    100%;
+
+                text-align:
+                    center;
             }
 
         }
@@ -1158,6 +1289,15 @@
                 href="{{ url_for('journal.journal_history') }}"
             >
                 My Journal
+            </a>
+
+
+            <!-- NEW NEXT STEP LINK -->
+
+            <a
+                href="{{ url_for('next_step.next_step_page') }}"
+            >
+                🌱 Next Step
             </a>
 
 
@@ -1477,15 +1617,52 @@
 
 
 
-        <!-- BACK -->
+        <!-- ==================================
+             BOTTOM ACTIONS
+        =================================== -->
 
-        <div class="back-link">
+        <div class="bottom-actions">
+
 
             <a
-                href="{{ url_for('index') }}"
+                href="{{ url_for('journal.journal_history') }}"
+                class="bottom-button journal-button"
             >
-                ← Back to Home
+
+                ← Back to My Journal
+
             </a>
+
+
+            <a
+                href="{{ url_for('next_step.next_step_page') }}"
+                class="bottom-button next-step-button"
+            >
+
+                🌱 Your Next Step
+
+            </a>
+
+
+            <a
+                href="{{ url_for('insights.insights_page') }}"
+                class="bottom-button insights-button"
+            >
+
+                📊 View My Insights
+
+            </a>
+
+
+            <a
+                href="{{ url_for('journal.create_journal') }}"
+                class="bottom-button write-button"
+            >
+
+                ✍️ Write Another Entry
+
+            </a>
+
 
         </div>
 
