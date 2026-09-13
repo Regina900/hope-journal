@@ -15,20 +15,12 @@
 
     <style>
 
-        /* =====================================
-           RESET
-        ===================================== */
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-
-        /* =====================================
-           BODY
-        ===================================== */
 
         body {
 
@@ -66,24 +58,22 @@
 
             width: 100%;
 
-            padding:
-                18px 6%;
+            padding: 18px 6%;
 
             display: flex;
 
-            justify-content:
-                space-between;
+            justify-content: space-between;
 
             align-items: center;
 
+            gap: 20px;
+
             background:
-                rgba(255, 255, 255, 0.78);
+                rgba(255, 255, 255, 0.80);
 
-            backdrop-filter:
-                blur(14px);
+            backdrop-filter: blur(14px);
 
-            -webkit-backdrop-filter:
-                blur(14px);
+            -webkit-backdrop-filter: blur(14px);
 
             border-bottom:
                 1px solid
@@ -103,7 +93,7 @@
 
             text-decoration: none;
 
-            font-size: 1.5rem;
+            font-size: 1.45rem;
 
             font-weight: bold;
 
@@ -115,9 +105,11 @@
 
             display: flex;
 
-            gap: 24px;
-
             align-items: center;
+
+            justify-content: flex-end;
+
+            gap: 22px;
 
             flex-wrap: wrap;
         }
@@ -125,22 +117,28 @@
 
         .nav-links a {
 
-            color: #5c506d;
+            color: #655a70;
 
             text-decoration: none;
 
             font-family: Arial, sans-serif;
 
-            font-size: 0.9rem;
+            font-size: 0.88rem;
+
+            font-weight: 600;
 
             transition:
-                color 0.2s ease;
+                color 0.2s ease,
+                transform 0.2s ease;
         }
 
 
         .nav-links a:hover {
 
-            color: #7959a6;
+            color: #76559d;
+
+            transform:
+                translateY(-1px);
         }
 
 
@@ -156,12 +154,10 @@
 
         main {
 
-            width: 90%;
-
-            max-width: 900px;
+            width: min(1000px, 92%);
 
             margin:
-                55px auto 0;
+                55px auto 70px;
         }
 
 
@@ -173,23 +169,23 @@
 
             text-align: center;
 
-            margin-bottom: 32px;
+            margin-bottom: 35px;
         }
 
 
-        .small-title {
+        .eyebrow {
 
             display: inline-block;
 
             padding:
                 7px 15px;
 
-            margin-bottom: 17px;
+            margin-bottom: 15px;
 
             border-radius: 30px;
 
             background:
-                rgba(255, 255, 255, 0.65);
+                rgba(255, 255, 255, 0.68);
 
             color: #9079a9;
 
@@ -205,20 +201,20 @@
         }
 
 
-        h1 {
+        .page-header h1 {
 
             color: #514167;
 
             font-size:
-                clamp(2.2rem, 5vw, 3.6rem);
+                clamp(2.2rem, 5vw, 3.7rem);
 
             line-height: 1.15;
 
-            margin-bottom: 16px;
+            margin-bottom: 15px;
         }
 
 
-        .page-header > p {
+        .page-header p {
 
             max-width: 680px;
 
@@ -226,17 +222,17 @@
 
             color: #756b7e;
 
-            font-size: 1.02rem;
+            font-size: 1.03rem;
 
             line-height: 1.8;
         }
 
 
         /* =====================================
-           MAIN FEATURE CARD
+           MAIN CARD
         ===================================== */
 
-        .next-step-card {
+        .next-card {
 
             position: relative;
 
@@ -256,44 +252,44 @@
                 5px solid
                 #71957a;
 
-            border-radius: 26px;
+            border-radius: 28px;
 
             box-shadow:
-                0 15px 45px
+                0 18px 50px
                 rgba(70, 50, 90, 0.08);
 
             text-align: center;
         }
 
 
-        .next-step-card::after {
+        .next-card::after {
 
             content: "";
 
             position: absolute;
 
-            width: 150px;
+            width: 170px;
 
-            height: 150px;
+            height: 170px;
 
-            right: -70px;
+            right: -80px;
 
-            top: -70px;
+            top: -80px;
 
             border-radius: 50%;
 
             background:
-                rgba(231, 241, 232, 0.6);
+                rgba(231, 241, 232, 0.58);
 
             pointer-events: none;
         }
 
 
-        .next-step-icon {
+        .main-icon {
 
-            width: 72px;
+            width: 76px;
 
-            height: 72px;
+            height: 76px;
 
             display: flex;
 
@@ -304,51 +300,49 @@
             margin:
                 0 auto 20px;
 
-            border-radius: 22px;
+            border-radius: 23px;
 
             background:
                 #e9f2ea;
 
-            font-size: 2.25rem;
+            font-size: 2.5rem;
         }
 
 
-        .next-step-card h2 {
+        .next-card h2 {
 
             color: #58705c;
 
-            font-size: 1.7rem;
+            font-size: 1.75rem;
 
             margin-bottom: 10px;
         }
 
 
-        .subtitle {
+        .mood-note {
 
-            color: #7a897c;
+            color: #8a8190;
 
             font-family:
                 Arial,
                 sans-serif;
 
-            font-size: 0.9rem;
+            font-size: 0.82rem;
 
-            line-height: 1.7;
-
-            margin-bottom: 28px;
+            margin-bottom: 27px;
         }
 
 
         /* =====================================
-           PRACTICAL ACTION
+           PERSONALIZED ACTION
         ===================================== */
 
         .action-box {
 
-            max-width: 700px;
+            max-width: 730px;
 
             margin:
-                0 auto 28px;
+                0 auto 27px;
 
             padding:
                 28px 25px;
@@ -396,7 +390,7 @@
 
             font-size: 1.4rem;
 
-            line-height: 1.4;
+            line-height: 1.45;
 
             margin-bottom: 12px;
         }
@@ -413,10 +407,154 @@
 
 
         /* =====================================
-           SMALL STEP OPTIONS
+           PERSONALIZE BUTTON
         ===================================== */
 
-        .small-steps {
+        .personalize-area {
+
+            margin:
+                0 auto 30px;
+        }
+
+
+        .personalize-note {
+
+            color: #8a8190;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.78rem;
+
+            margin-bottom: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        .personalize-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                13px 23px;
+
+            border: none;
+
+            border-radius: 30px;
+
+            background:
+                #765b95;
+
+            color: white;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.88rem;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px
+                rgba(118, 91, 149, 0.18);
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .personalize-button:hover {
+
+            background:
+                #62497d;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(118, 91, 149, 0.23);
+        }
+
+
+        /* =====================================
+           SAFETY SUPPORT
+        ===================================== */
+
+        .safety-box {
+
+            max-width: 730px;
+
+            margin:
+                0 auto 28px;
+
+            padding:
+                25px;
+
+            border-radius: 20px;
+
+            background:
+                #fff7f3;
+
+            border:
+                1px solid
+                rgba(190, 120, 100, 0.16);
+
+            text-align: left;
+        }
+
+
+        .safety-box h3 {
+
+            color: #815d52;
+
+            font-size: 1.05rem;
+
+            margin-bottom: 9px;
+        }
+
+
+        .safety-box p {
+
+            color: #786963;
+
+            font-family:
+                Arial,
+                sans-serif;
+
+            font-size: 0.86rem;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================
+           OTHER SMALL STEPS
+        ===================================== */
+
+        .steps-heading {
+
+            color: #5b4770;
+
+            font-size: 1.2rem;
+
+            margin:
+                0 auto 15px;
+        }
+
+
+        .steps-grid {
 
             display: grid;
 
@@ -425,10 +563,10 @@
 
             gap: 16px;
 
+            max-width: 800px;
+
             margin:
                 0 auto 30px;
-
-            max-width: 760px;
         }
 
 
@@ -445,6 +583,8 @@
             border:
                 1px solid
                 rgba(110, 90, 130, 0.10);
+
+            text-align: left;
 
             transition:
                 transform 0.2s ease,
@@ -465,7 +605,7 @@
 
         .step-icon {
 
-            font-size: 1.55rem;
+            font-size: 1.5rem;
 
             margin-bottom: 9px;
         }
@@ -475,7 +615,7 @@
 
             color: #5a5068;
 
-            font-size: 0.98rem;
+            font-size: 0.96rem;
 
             margin-bottom: 7px;
         }
@@ -485,7 +625,9 @@
 
             color: #756d7d;
 
-            font-family: Arial, sans-serif;
+            font-family:
+                Arial,
+                sans-serif;
 
             font-size: 0.82rem;
 
@@ -494,64 +636,7 @@
 
 
         /* =====================================
-           SAFETY SUPPORT
-        ===================================== */
-
-        .support-box {
-
-            max-width: 700px;
-
-            margin:
-                0 auto 30px;
-
-            padding:
-                25px;
-
-            border-radius: 20px;
-
-            background:
-                rgba(255, 250, 240, 0.88);
-
-            border:
-                1px solid
-                rgba(180, 150, 110, 0.15);
-
-            text-align: left;
-        }
-
-
-        .support-title {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 9px;
-
-            color: #745d46;
-
-            font-size: 1.05rem;
-
-            margin-bottom: 10px;
-        }
-
-
-        .support-box p {
-
-            color: #7b7065;
-
-            font-family:
-                Arial,
-                sans-serif;
-
-            font-size: 0.86rem;
-
-            line-height: 1.8;
-        }
-
-
-        /* =====================================
-           ACTION BUTTONS
+           BOTTOM BUTTONS
         ===================================== */
 
         .button-row {
@@ -566,7 +651,7 @@
 
             flex-wrap: wrap;
 
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
 
@@ -594,36 +679,43 @@
             font-weight: 600;
 
             transition:
-                0.2s ease;
+                transform 0.2s ease,
+                background 0.2s ease;
         }
 
 
-        .primary {
+        .button:hover {
+
+            transform:
+                translateY(-2px);
+
+            text-decoration: none;
+        }
+
+
+        .write-button {
 
             background:
-                #718d65;
+                #73579a;
 
             color: white;
 
             box-shadow:
                 0 8px 20px
-                rgba(113, 141, 101, 0.18);
+                rgba(115, 87, 154, 0.18);
         }
 
 
-        .primary:hover {
+        .write-button:hover {
 
             background:
-                #5f7954;
+                #604681;
 
             color: white;
-
-            transform:
-                translateY(-2px);
         }
 
 
-        .secondary {
+        .dashboard-button {
 
             background:
                 #eee7f5;
@@ -633,16 +725,13 @@
         }
 
 
-        .secondary:hover {
+        .dashboard-button:hover {
 
             background:
                 #e2d8ed;
 
             color:
                 #604681;
-
-            transform:
-                translateY(-2px);
         }
 
 
@@ -654,11 +743,8 @@
 
             text-align: center;
 
-            margin:
-                48px 0 28px;
-
             padding:
-                0 20px;
+                0 20px 30px;
 
             color: #91879a;
 
@@ -666,7 +752,7 @@
                 Arial,
                 sans-serif;
 
-            font-size: 0.78rem;
+            font-size: 0.82rem;
 
             line-height: 1.6;
         }
@@ -682,36 +768,44 @@
 
                 padding:
                     16px 5%;
+
+                align-items:
+                    flex-start;
             }
 
 
             .nav-links {
 
-                gap: 12px;
+                gap:
+                    10px;
             }
 
 
             .nav-links a {
 
-                font-size: 0.78rem;
+                font-size:
+                    0.76rem;
             }
 
 
             main {
+
+                width:
+                    94%;
 
                 margin-top:
                     40px;
             }
 
 
-            .next-step-card {
+            .next-card {
 
                 padding:
-                    34px 25px;
+                    34px 24px;
             }
 
 
-            .small-steps {
+            .steps-grid {
 
                 grid-template-columns:
                     1fr;
@@ -720,10 +814,6 @@
         }
 
 
-        /* =====================================
-           SMALL MOBILE
-        ===================================== */
-
         @media (max-width: 520px) {
 
             nav {
@@ -731,7 +821,8 @@
                 align-items:
                     flex-start;
 
-                gap: 15px;
+                gap:
+                    15px;
             }
 
 
@@ -745,10 +836,7 @@
             .nav-links {
 
                 gap:
-                    8px;
-
-                flex-wrap:
-                    wrap;
+                    7px;
 
                 justify-content:
                     flex-end;
@@ -758,25 +846,25 @@
             .nav-links a {
 
                 font-size:
-                    0.72rem;
+                    0.70rem;
             }
 
 
-            h1 {
+            .page-header h1 {
 
                 font-size:
                     2.25rem;
             }
 
 
-            .page-header > p {
+            .page-header p {
 
                 font-size:
                     0.92rem;
             }
 
 
-            .next-step-card {
+            .next-card {
 
                 padding:
                     30px 19px;
@@ -784,7 +872,7 @@
 
 
             .action-box,
-            .support-box {
+            .safety-box {
 
                 padding:
                     21px 18px;
@@ -795,6 +883,13 @@
 
                 font-size:
                     1.22rem;
+            }
+
+
+            .personalize-button {
+
+                width:
+                    100%;
             }
 
 
@@ -899,11 +994,11 @@
     <main>
 
 
-        <!-- PAGE INTRO -->
+        <!-- PAGE HEADER -->
 
         <section class="page-header">
 
-            <div class="small-title">
+            <div class="eyebrow">
 
                 A small step can matter
 
@@ -920,9 +1015,8 @@
             <p>
 
                 You don't have to solve everything today.
-                When life feels heavy, choosing one small,
-                practical action can help you move through
-                the moment gently.
+                Choose one small action that feels manageable
+                for this moment.
 
             </p>
 
@@ -931,13 +1025,13 @@
 
 
         <!-- =================================
-             MAIN NEXT STEP
+             NEXT STEP CARD
         ================================== -->
 
-        <section class="next-step-card">
+        <section class="next-card">
 
 
-            <div class="next-step-icon">
+            <div class="main-icon">
 
                 🌱
 
@@ -946,175 +1040,270 @@
 
             <h2>
 
-                Start With One Small Step
+                Start Where You Are
 
             </h2>
 
 
-            <p class="subtitle">
+            {% if mood %}
 
-                You don't need to do everything at once.
-                Choose what feels manageable right now.
+                <p class="mood-note">
 
-            </p>
-
-
-
-            <!-- PRACTICAL ACTION -->
-
-            <div class="action-box">
-
-                <div class="action-label">
-
-                    Try this now
-
-                </div>
-
-
-                <h3>
-
-                    Reach out to someone you trust 🤝
-
-                </h3>
-
-
-                <p>
-
-                    You don't have to explain everything.
-                    You could simply send a message such as,
-                    “I'm having a difficult day. Can we talk?”
-                    Letting someone know how you're doing can
-                    make a difficult moment feel less lonely.
+                    Based on how you've been feeling:
+                    <strong>{{ mood }}</strong>
 
                 </p>
 
-            </div>
+            {% elif latest_entry %}
 
+                <p class="mood-note">
 
-
-            <!-- OTHER OPTIONS -->
-
-            <div class="small-steps">
-
-
-                <div class="step">
-
-                    <div class="step-icon">
-
-                        🌬️
-
-                    </div>
-
-
-                    <h4>
-
-                        Pause and breathe
-
-                    </h4>
-
-
-                    <p>
-
-                        Take five slow breaths and give
-                        yourself a quiet moment.
-
-                    </p>
-
-                </div>
-
-
-
-                <div class="step">
-
-                    <div class="step-icon">
-
-                        💧
-
-                    </div>
-
-
-                    <h4>
-
-                        Care for your body
-
-                    </h4>
-
-
-                    <p>
-
-                        Drink some water, stretch, or step
-                        away from your screen for a few minutes.
-
-                    </p>
-
-                </div>
-
-
-
-                <div class="step">
-
-                    <div class="step-icon">
-
-                        ✍️
-
-                    </div>
-
-
-                    <h4>
-
-                        Put it into words
-
-                    </h4>
-
-
-                    <p>
-
-                        Write down one thing you're feeling
-                        without worrying about making it perfect.
-
-                    </p>
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- SAFETY SUPPORT -->
-
-            <div class="support-box">
-
-
-                <h3 class="support-title">
-
-                    💜 When things feel unsafe
-
-                </h3>
-
-
-                <p>
-
-                    You don't have to handle a crisis alone.
-                    Consider staying with someone you trust,
-                    telling them how you're feeling, and seeking
-                    immediate local emergency or crisis support
-                    if you believe you may hurt yourself.
+                    Based on your most recent journal reflection
 
                 </p>
 
+            {% else %}
+
+                <p class="mood-note">
+
+                    A gentle starting point for today
+
+                </p>
+
+            {% endif %}
+
+
+
+            <!-- =================================
+                 PERSONALIZED OR GUIDED ACTION
+            ================================== -->
+
+            {% if personalized %}
+
+                <div class="action-box">
+
+                    <div class="action-label">
+
+                        Personalized with Groq
+
+                    </div>
+
+
+                    <h3>
+
+                        {{ personalized.title }}
+
+                    </h3>
+
+
+                    <p>
+
+                        {{ personalized.text }}
+
+                    </p>
+
+                </div>
+
+            {% else %}
+
+                <div class="action-box">
+
+                    <div class="action-label">
+
+                        A guided suggestion
+
+                    </div>
+
+
+                    <h3>
+
+                        {{ default_step.title }}
+
+                    </h3>
+
+
+                    <p>
+
+                        {{ default_step.text }}
+
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- =================================
+                 OPTIONAL GROQ PERSONALIZATION
+            ================================== -->
+
+            {% if latest_entry and not safety_flagged and not personalized %}
+
+                <div class="personalize-area">
+
+                    <p class="personalize-note">
+
+                        Want a suggestion based more closely
+                        on what you wrote?
+
+                    </p>
+
+
+                    <form
+                        method="POST"
+                        action="{{ url_for('next_step.next_step_page') }}"
+                    >
+
+                        <button
+                            type="submit"
+                            class="personalize-button"
+                        >
+
+                            ✨ Personalize My Next Step
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- =================================
+                 SAFETY SUPPORT
+            ================================== -->
+
+            {% if safety_flagged %}
+
+                <div class="safety-box">
+
+                    <h3>
+
+                        💜 When things feel unsafe
+
+                    </h3>
+
+
+                    <p>
+
+                        {{ safety_message }}
+
+                        If you believe you may hurt yourself
+                        or are in immediate danger, seek immediate
+                        local emergency or crisis support and,
+                        where possible, stay with someone you trust.
+
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- =================================
+                 OTHER OPTIONS
+            ================================== -->
+
+            <h3 class="steps-heading">
+
+                Other small steps you could choose
+
+            </h3>
+
+
+            <div class="steps-grid">
+
+                {% if personalized %}
+
+                    {% for step in personalized.alternatives %}
+
+                        <div class="step">
+
+                            <div class="step-icon">
+
+                                {% if loop.index == 1 %}
+                                    🤝
+                                {% elif loop.index == 2 %}
+                                    🌿
+                                {% else %}
+                                    ✍️
+                                {% endif %}
+
+                            </div>
+
+
+                            <h4>
+
+                                {{ step.title }}
+
+                            </h4>
+
+
+                            <p>
+
+                                {{ step.text }}
+
+                            </p>
+
+                        </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    {% for step in default_step.alternatives %}
+
+                        <div class="step">
+
+                            <div class="step-icon">
+
+                                {% if loop.index == 1 %}
+                                    🌬️
+                                {% elif loop.index == 2 %}
+                                    💧
+                                {% else %}
+                                    ✍️
+                                {% endif %}
+
+                            </div>
+
+
+                            <h4>
+
+                                {{ step.title }}
+
+                            </h4>
+
+
+                            <p>
+
+                                {{ step.text }}
+
+                            </p>
+
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
             </div>
 
 
 
-            <!-- BUTTONS -->
+            <!-- =================================
+                 BOTTOM ACTIONS
+            ================================== -->
 
             <div class="button-row">
 
-
                 <a
                     href="{{ url_for('journal.create_journal') }}"
-                    class="button primary"
+                    class="button write-button"
                 >
 
                     ✍️ Write About It
@@ -1124,7 +1313,7 @@
 
                 <a
                     href="{{ url_for('dashboard') }}"
-                    class="button secondary"
+                    class="button dashboard-button"
                 >
 
                     ← Back to Dashboard
@@ -1156,4 +1345,3 @@
 </body>
 
 </html>
-

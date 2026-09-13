@@ -548,6 +548,37 @@
         }
 
 
+        /* =================================
+           NEXT STEP BUTTON
+        ================================= */
+
+        .next-step-button {
+
+            background:
+                #e9f2ea;
+
+            color:
+                #58705c;
+
+            border:
+                1px solid
+                rgba(113, 149, 122, 0.18);
+        }
+
+
+        .next-step-button:hover {
+
+            background:
+                #dfeee1;
+
+            color:
+                #4f6954;
+
+            transform:
+                translateY(-2px);
+        }
+
+
         /* ==============================
            FOOTER
         ============================== */
@@ -669,6 +700,15 @@
                 href="{{ url_for('journal.journal_history') }}"
             >
                 My Journal
+            </a>
+
+
+            <!-- NEW NEXT STEP LINK -->
+
+            <a
+                href="{{ url_for('next_step.next_step_page') }}"
+            >
+                🌱 Next Step
             </a>
 
 
@@ -952,7 +992,19 @@
             </a>
 
 
-            <!-- NEW INSIGHTS BUTTON -->
+            <!-- NEW NEXT STEP BUTTON -->
+
+            <a
+                href="{{ url_for('next_step.next_step_page') }}"
+                class="button next-step-button"
+            >
+
+                🌱 Your Next Step
+
+            </a>
+
+
+            <!-- EXISTING INSIGHTS BUTTON -->
 
             <a
                 href="{{ url_for('insights.insights_page') }}"
